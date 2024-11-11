@@ -66,7 +66,7 @@ class RESTcli
      * @param string|null $proxy
      * @throws BitPayApiException
      */
-    public function __construct(string $environment, PrivateKey $ecKey, ?string $proxy = null, ?string $platformInfo)
+    public function __construct(string $environment, PrivateKey $ecKey, ?string $proxy = null, ?string $platformInfo = null)
     {
         $this->ecKey = $ecKey;
         $this->baseUrl = $environment == Env::TEST ? Env::TEST_URL : Env::PROD_URL;
