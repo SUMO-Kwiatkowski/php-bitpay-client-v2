@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f909f5bbf62dc932b555af90c03df021",
+    "content-hash": "85a8f63fea9f82ef23028c3bfee37148",
     "packages": [
         {
             "name": "bitpay/key-utils",
-            "version": "1.1.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bitpay/bitpay-php-keyutils.git",
-                "reference": "61cc4a58f25e79b7f61ff4631152139f6b084cb1"
+                "reference": "e4797688252d25943414b2bb909f7547bc969877"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bitpay/bitpay-php-keyutils/zipball/61cc4a58f25e79b7f61ff4631152139f6b084cb1",
-                "reference": "61cc4a58f25e79b7f61ff4631152139f6b084cb1",
+                "url": "https://api.github.com/repos/bitpay/bitpay-php-keyutils/zipball/e4797688252d25943414b2bb909f7547bc969877",
+                "reference": "e4797688252d25943414b2bb909f7547bc969877",
                 "shasum": ""
             },
             "require": {
@@ -25,10 +25,11 @@
                 "ext-curl": "*",
                 "ext-iconv": "*",
                 "ext-json": "*",
-                "ext-openssl": "*"
+                "ext-openssl": "*",
+                "php": "^8.1 || ^8.2 || ^8.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.5 || ^9.0"
+                "phpunit/phpunit": "10.5.38"
             },
             "suggest": {
                 "ext-gmp": "Required to use this package with GMP instead of BCMath"
@@ -52,9 +53,9 @@
             "description": "BitPay Utils pack for cryptography",
             "support": {
                 "issues": "https://github.com/bitpay/bitpay-php-keyutils/issues",
-                "source": "https://github.com/bitpay/bitpay-php-keyutils/tree/1.1.4"
+                "source": "https://github.com/bitpay/bitpay-php-keyutils/tree/2.0.5"
             },
-            "time": "2024-02-06T02:15:49+00:00"
+            "time": "2024-12-09T17:50:51+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -691,16 +692,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v6.4.15",
+            "version": "v6.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "f1fc6f47283e27336e7cebb9e8946c8de7bff9bd"
+                "reference": "799445db3f15768ecc382ac5699e6da0520a0a04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/f1fc6f47283e27336e7cebb9e8946c8de7bff9bd",
-                "reference": "f1fc6f47283e27336e7cebb9e8946c8de7bff9bd",
+                "url": "https://api.github.com/repos/symfony/console/zipball/799445db3f15768ecc382ac5699e6da0520a0a04",
+                "reference": "799445db3f15768ecc382ac5699e6da0520a0a04",
                 "shasum": ""
             },
             "require": {
@@ -765,7 +766,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v6.4.15"
+                "source": "https://github.com/symfony/console/tree/v6.4.17"
             },
             "funding": [
                 {
@@ -781,20 +782,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-06T14:19:14+00:00"
+            "time": "2024-12-07T12:07:30+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.5.0",
+            "version": "v3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1"
+                "reference": "74c71c939a79f7d5bf3c1ce9f5ea37ba0114c6f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1",
-                "reference": "0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/74c71c939a79f7d5bf3c1ce9f5ea37ba0114c6f6",
+                "reference": "74c71c939a79f7d5bf3c1ce9f5ea37ba0114c6f6",
                 "shasum": ""
             },
             "require": {
@@ -802,12 +803,12 @@
             },
             "type": "library",
             "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/contracts",
+                    "name": "symfony/contracts"
+                },
                 "branch-alias": {
                     "dev-main": "3.5-dev"
-                },
-                "thanks": {
-                    "name": "symfony/contracts",
-                    "url": "https://github.com/symfony/contracts"
                 }
             },
             "autoload": {
@@ -832,7 +833,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.5.0"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.5.1"
             },
             "funding": [
                 {
@@ -848,7 +849,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:32:20+00:00"
+            "time": "2024-09-25T14:20:29+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -876,8 +877,8 @@
             "type": "library",
             "extra": {
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -952,8 +953,8 @@
             "type": "library",
             "extra": {
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -1030,8 +1031,8 @@
             "type": "library",
             "extra": {
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -1114,8 +1115,8 @@
             "type": "library",
             "extra": {
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -1170,16 +1171,16 @@
         },
         {
             "name": "symfony/service-contracts",
-            "version": "v3.5.0",
+            "version": "v3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "bd1d9e59a81d8fa4acdcea3f617c581f7475a80f"
+                "reference": "e53260aabf78fb3d63f8d79d69ece59f80d5eda0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/bd1d9e59a81d8fa4acdcea3f617c581f7475a80f",
-                "reference": "bd1d9e59a81d8fa4acdcea3f617c581f7475a80f",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/e53260aabf78fb3d63f8d79d69ece59f80d5eda0",
+                "reference": "e53260aabf78fb3d63f8d79d69ece59f80d5eda0",
                 "shasum": ""
             },
             "require": {
@@ -1192,12 +1193,12 @@
             },
             "type": "library",
             "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/contracts",
+                    "name": "symfony/contracts"
+                },
                 "branch-alias": {
                     "dev-main": "3.5-dev"
-                },
-                "thanks": {
-                    "name": "symfony/contracts",
-                    "url": "https://github.com/symfony/contracts"
                 }
             },
             "autoload": {
@@ -1233,7 +1234,7 @@
                 "standards"
             ],
             "support": {
-                "source": "https://github.com/symfony/service-contracts/tree/v3.5.0"
+                "source": "https://github.com/symfony/service-contracts/tree/v3.5.1"
             },
             "funding": [
                 {
@@ -1249,7 +1250,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:32:20+00:00"
+            "time": "2024-09-25T14:20:29+00:00"
         },
         {
             "name": "symfony/string",
@@ -1473,16 +1474,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v5.3.1",
+            "version": "v5.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "8eea230464783aa9671db8eea6f8c6ac5285794b"
+                "reference": "447a020a1f875a434d62f2a401f53b82a396e494"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/8eea230464783aa9671db8eea6f8c6ac5285794b",
-                "reference": "8eea230464783aa9671db8eea6f8c6ac5285794b",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/447a020a1f875a434d62f2a401f53b82a396e494",
+                "reference": "447a020a1f875a434d62f2a401f53b82a396e494",
                 "shasum": ""
             },
             "require": {
@@ -1525,9 +1526,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v5.3.1"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v5.4.0"
             },
-            "time": "2024-10-08T18:51:32+00:00"
+            "time": "2024-12-30T11:07:19+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -1970,16 +1971,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.5.38",
+            "version": "10.5.40",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "a86773b9e887a67bc53efa9da9ad6e3f2498c132"
+                "reference": "e6ddda95af52f69c1e0c7b4f977cccb58048798c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a86773b9e887a67bc53efa9da9ad6e3f2498c132",
-                "reference": "a86773b9e887a67bc53efa9da9ad6e3f2498c132",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e6ddda95af52f69c1e0c7b4f977cccb58048798c",
+                "reference": "e6ddda95af52f69c1e0c7b4f977cccb58048798c",
                 "shasum": ""
             },
             "require": {
@@ -1989,7 +1990,7 @@
                 "ext-mbstring": "*",
                 "ext-xml": "*",
                 "ext-xmlwriter": "*",
-                "myclabs/deep-copy": "^1.12.0",
+                "myclabs/deep-copy": "^1.12.1",
                 "phar-io/manifest": "^2.0.4",
                 "phar-io/version": "^3.2.1",
                 "php": ">=8.1",
@@ -2051,7 +2052,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.38"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.40"
             },
             "funding": [
                 {
@@ -2067,7 +2068,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-28T13:06:21+00:00"
+            "time": "2024-12-21T05:49:06+00:00"
         },
         {
             "name": "sebastian/cli-parser",
