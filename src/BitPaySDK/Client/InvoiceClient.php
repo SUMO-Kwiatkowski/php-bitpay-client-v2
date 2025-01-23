@@ -250,14 +250,16 @@ class InvoiceClient
     /**
      * Request a BitPay Invoice Webhook.
      *
-     * @param string $invoiceId A BitPay invoice ID.
-     * @return bool              True if the webhook was successfully requested, false otherwise.
+     * @param string $invoiceId    A BitPay invoice ID.
+     * @param string $invoiceToken The resource token for the invoiceId.
+     *                             This token can be retrieved from the Bitpay's invoice object.
+     * @return bool                True if the webhook was successfully requested, false otherwise.
      * @throws BitPayApiException
      * @throws BitPayGenericException
      */
-    public function requestNotification(string $invoiceId): bool
+    public function requestNotification(string $invoiceId, string $invoiceToken): bool
     {
-        $params = ['token' => $this->tokenCache->getTokenByFacade(Facade::MERCHANT)];
+        $params = ['token' => $invoiceToken];
         $responseJson = $this->restCli->post("invoices/" . $invoiceId . "/notifications", $params);
 
         return strtolower($responseJson) === "success";

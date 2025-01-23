@@ -67,7 +67,7 @@ class RefundClientTest extends AbstractClientTestCase
         $invoices = $this->client->getInvoices($dateStart, $dateEnd, 'complete', null, 1);
         $refunds = $this->client->getRefunds($invoices[0]->getId());
 
-        self::assertTrue($this->client->sendRefundNotification($refunds[0]->getId()));
+        self::assertTrue($this->client->sendRefundNotification($refunds[0]->getId(), $refunds[0]->getToken()));
     }
 
     public function testCancelRefund(): void

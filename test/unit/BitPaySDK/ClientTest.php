@@ -47,6 +47,7 @@ class ClientTest extends TestCase
     private const PAYOUT_TOKEN = 'kQLZ7C9YKPSnMCC4EJwrqRHXuQkLzL1W8DfZCh37DHb';
     private const CORRUPT_JSON_STRING = '{"code":"USD""name":"US Dollar","rate":21205.85}';
     private const TEST_INVOICE_ID = 'UZjwcYkWAKfTMn9J1yyfs4';
+    private const TEST_INVOICE_TOKEN = 'cM78LHk17Q8fktDE6QLBBFfvH1QKBhRkHibTLcxhgzsu3VDRvSyu3CGi17DuwYxhT';
     private const TEST_INVOICE_GUID = 'chc9kj52-04g0-4b6f-941d-3a844e352758';
     private const CORRECT_JSON_STRING = '[ 
         { "currency": "EUR", "balance": 0 }, 
@@ -2796,14 +2797,15 @@ class ClientTest extends TestCase
     public function testSendRefundNotification()
     {
         $exampleRefundId = 'testId';
-        $params['token'] = self::MERCHANT_TOKEN;
+        $exampleRefundToken = 'testToken';
+        $params['token'] = $exampleRefundToken;
 
         $restCliMock = $this->getRestCliMock();
         $restCliMock->expects(self::once())->method('post')
             ->with("refunds/" . $exampleRefundId . "/notifications", $params, true)
             ->willReturn('{"status":"success"}');
         $client = $this->getClient($restCliMock);
-        $result = $client->sendRefundNotification($exampleRefundId);
+        $result = $client->sendRefundNotification($exampleRefundId, $exampleRefundToken);
 
         self::assertIsBool($result);
     }
@@ -2814,7 +2816,8 @@ class ClientTest extends TestCase
     public function testSendRefundNotificationShouldCatchRestCliBitPayException()
     {
         $exampleRefundId = 'testId';
-        $params['token'] = self::MERCHANT_TOKEN;
+        $exampleRefundToken = 'testToken';
+        $params['token'] = $exampleRefundToken;
 
         $restCliMock = $this->getRestCliMock();
         $restCliMock->expects(self::once())->method('post')
@@ -2823,7 +2826,7 @@ class ClientTest extends TestCase
         $client = $this->getClient($restCliMock);
         $this->expectException(BitPayApiException::class);
 
-        $client->sendRefundNotification($exampleRefundId);
+        $client->sendRefundNotification($exampleRefundId, $exampleRefundToken);
     }
 
     /**
@@ -2832,7 +2835,8 @@ class ClientTest extends TestCase
     public function testSendRefundNotificationShouldCatchRestCliException()
     {
         $exampleRefundId = 'testId';
-        $params['token'] = self::MERCHANT_TOKEN;
+        $exampleRefundToken = 'testToken';
+        $params['token'] = $exampleRefundToken;
 
         $restCliMock = $this->getRestCliMock();
         $restCliMock->expects(self::once())->method('post')
@@ -2841,7 +2845,7 @@ class ClientTest extends TestCase
         $client = $this->getClient($restCliMock);
         $this->expectException(BitPayApiException::class);
 
-        $client->sendRefundNotification($exampleRefundId);
+        $client->sendRefundNotification($exampleRefundId, $exampleRefundToken);
     }
 
     /**
@@ -2850,7 +2854,8 @@ class ClientTest extends TestCase
     public function testSendRefundNotificationShouldCatchJsonMapperException()
     {
         $exampleRefundId = 'testId';
-        $params['token'] = self::MERCHANT_TOKEN;
+        $exampleRefundToken = 'testToken';
+        $params['token'] = $exampleRefundToken;
 
         $restCliMock = $this->getRestCliMock();
         $restCliMock->expects(self::once())->method('post')
@@ -2858,7 +2863,7 @@ class ClientTest extends TestCase
             ->willReturn(file_get_contents(__DIR__ . '/jsonResponse/false.json', true));
         $client = $this->getClient($restCliMock);
 
-        self::assertFalse($client->sendRefundNotification($exampleRefundId));
+        self::assertFalse($client->sendRefundNotification($exampleRefundId, $exampleRefundToken));
     }
 
     public function testGetInvoice()
@@ -3037,7 +3042,7 @@ class ClientTest extends TestCase
     public function testRequestInvoiceNotificationShouldReturnTrueOnSuccess()
     {
         $invoiceId = self::TEST_INVOICE_ID;
-        $params['token'] = self::MERCHANT_TOKEN;
+        $params['token'] = self::TEST_INVOICE_TOKEN;
         $expectedSuccessResponse = 'success';
         $restCliMock = $this->getRestCliMock();
 
@@ -3049,13 +3054,13 @@ class ClientTest extends TestCase
 
         $testedObject = $this->getClient($restCliMock);
 
-        $result = $testedObject->requestInvoiceNotification($invoiceId);
+        $result = $testedObject->requestInvoiceNotification($invoiceId, self::TEST_INVOICE_TOKEN);
         self::assertTrue($result);
     }
 
     public function testRequestInvoiceNotificationShouldReturnFalseOnFailure()
     {
-        $params['token'] = self::MERCHANT_TOKEN;
+        $params['token'] = self::TEST_INVOICE_TOKEN;
         $expectedFailResponse = 'fail';
         $restCliMock = $this->getRestCliMock();
 
@@ -3066,13 +3071,13 @@ class ClientTest extends TestCase
             ->willReturn($expectedFailResponse);
         $testedObject = $this->getClient($restCliMock);
 
-        $result = $testedObject->requestInvoiceNotification(self::TEST_INVOICE_ID);
+        $result = $testedObject->requestInvoiceNotification(self::TEST_INVOICE_ID, self::TEST_INVOICE_TOKEN);
         self::assertFalse($result);
     }
 
     public function testRequestInvoiceNotificationShouldCatchJsonMapperException()
     {
-        $params['token'] = self::MERCHANT_TOKEN;
+        $params['token'] = self::TEST_INVOICE_TOKEN;
         $restCliMock = $this->getRestCliMock();
 
         $restCliMock
@@ -3084,7 +3089,7 @@ class ClientTest extends TestCase
         $testedObject = $this->getClient($restCliMock);
 
         $this->expectException(BitPayGenericException::class);
-        $testedObject->requestInvoiceNotification(self::TEST_INVOICE_ID);
+        $testedObject->requestInvoiceNotification(self::TEST_INVOICE_ID, self::TEST_INVOICE_TOKEN);
     }
 
     public function testCancelInvoice()
