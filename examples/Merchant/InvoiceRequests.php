@@ -87,6 +87,8 @@ final class InvoiceRequests
     {
         $client = ClientProvider::create();
 
-        $client->requestInvoiceNotification('someInvoiceId');
+        $invoiceId = 'someInvoiceId';
+        $invoiceById = $client->getInvoice($invoiceId);
+        $client->requestInvoiceNotification($invoiceId, $invoiceById->getToken());
     }
 }

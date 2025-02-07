@@ -258,15 +258,17 @@ class RefundClient
     /**
      * Send a refund notification.
      *
-     * @param string $refundId A BitPay refund ID.
+     * @param string $refundId     A BitPay refund ID.
+     * @param string $refundToken  The resource token for the refundId.
+     *                             This token can be retrieved from the Bitpay's refund object.
      * @return bool   $result      An updated Refund Object
      * @throws BitPayApiException
      * @throws Exception
      */
-    public function sendNotification(string $refundId): bool
+    public function sendNotification(string $refundId, string $refundToken): bool
     {
         $params = [];
-        $params["token"] = $this->tokenCache->getTokenByFacade(Facade::MERCHANT);
+        $params["token"] = $refundToken;
 
         $responseJson = $this->restCli->post("refunds/" . $refundId . "/notifications", $params, true);
 

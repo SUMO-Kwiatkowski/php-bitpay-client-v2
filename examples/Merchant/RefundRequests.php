@@ -57,6 +57,8 @@ final class RefundRequests
     {
         $client = ClientProvider::create();
 
-        $client->sendRefundNotification('someRefundId');
+        $refundId = 'someRefundId';
+        $refund = $client->getRefund($refundId);
+        $client->sendRefundNotification($refundId, $refund->getToken());
     }
 }

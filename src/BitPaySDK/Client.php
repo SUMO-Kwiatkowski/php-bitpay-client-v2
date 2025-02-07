@@ -272,16 +272,18 @@ class Client
      *
      * @see https://developer.bitpay.com/reference/retrieve-an-event-token Retrieve an Event Token
      *
-     * @param  string $invoiceId A BitPay invoice ID.
-     * @return bool              True if the webhook was successfully requested, false otherwise.
+     * @param  string $invoiceId    A BitPay invoice ID.
+     * @param  string $invoiceToken The resource token for the invoiceId.
+     *                              This token can be retrieved from the Bitpay's invoice object.
+     * @return bool                 True if the webhook was successfully requested, false otherwise.
      * @throws BitPayApiException
      * @throws BitPayGenericException
      */
-    public function requestInvoiceNotification(string $invoiceId): bool
+    public function requestInvoiceNotification(string $invoiceId, string $invoiceToken): bool
     {
         $invoiceClient = $this->getInvoiceClient();
 
-        return $invoiceClient->requestNotification($invoiceId);
+        return $invoiceClient->requestNotification($invoiceId, $invoiceToken);
     }
 
     /**
@@ -469,14 +471,16 @@ class Client
      * Request a Refund Notification to be Resent
      *
      * @param  string $refundId    A BitPay refund ID.
+     * @param  string $refundToken The resource token for the refundId.
+     *                             This token can be retrieved from the Bitpay's refund object.
      * @return bool   $result      An updated Refund Object
      * @throws BitPayApiException
      */
-    public function sendRefundNotification(string $refundId): bool
+    public function sendRefundNotification(string $refundId, string $refundToken): bool
     {
         $refundClient = $this->getRefundClient();
 
-        return $refundClient->sendNotification($refundId);
+        return $refundClient->sendNotification($refundId, $refundToken);
     }
 
     /**
