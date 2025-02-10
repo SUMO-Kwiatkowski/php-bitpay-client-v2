@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "bitpay/key-utils",
-            "version": "2.0.5",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bitpay/bitpay-php-keyutils.git",
-                "reference": "e4797688252d25943414b2bb909f7547bc969877"
+                "reference": "814cf4623c015da6c6a51e45b60ac4f24470a716"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bitpay/bitpay-php-keyutils/zipball/e4797688252d25943414b2bb909f7547bc969877",
-                "reference": "e4797688252d25943414b2bb909f7547bc969877",
+                "url": "https://api.github.com/repos/bitpay/bitpay-php-keyutils/zipball/814cf4623c015da6c6a51e45b60ac4f24470a716",
+                "reference": "814cf4623c015da6c6a51e45b60ac4f24470a716",
                 "shasum": ""
             },
             "require": {
@@ -29,7 +29,7 @@
                 "php": "^8.1 || ^8.2 || ^8.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "10.5.38"
+                "phpunit/phpunit": "10.5.45"
             },
             "suggest": {
                 "ext-gmp": "Required to use this package with GMP instead of BCMath"
@@ -53,9 +53,9 @@
             "description": "BitPay Utils pack for cryptography",
             "support": {
                 "issues": "https://github.com/bitpay/bitpay-php-keyutils/issues",
-                "source": "https://github.com/bitpay/bitpay-php-keyutils/tree/2.0.5"
+                "source": "https://github.com/bitpay/bitpay-php-keyutils/tree/2.0.6"
             },
-            "time": "2024-12-09T17:50:51+00:00"
+            "time": "2025-02-10T15:17:09+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3039,7 +3039,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -3047,6 +3047,6 @@
         "ext-json": "*",
         "ext-reflection": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
