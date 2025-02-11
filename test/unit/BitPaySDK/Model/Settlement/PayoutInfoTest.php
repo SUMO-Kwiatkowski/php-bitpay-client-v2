@@ -123,7 +123,7 @@ class PayoutInfoTest extends TestCase
 
     public function testGetWire()
     {
-        $expectedWire = 'Test wire';
+        $expectedWire = true;
 
         $payoutInfo = $this->createClassObject();
         $payoutInfo->setWire($expectedWire);
@@ -297,7 +297,7 @@ class PayoutInfoTest extends TestCase
         $payoutInfo->setCity('Miami');
         $payoutInfo->setPostal('12345');
         $payoutInfo->setSort('Sort');
-        $payoutInfo->setWire('Wire');
+        $payoutInfo->setWire(true);
         $payoutInfo->setBankName('Bank name');
         $payoutInfo->setBankAddress('Bank address');
         $payoutInfo->setIban('KW81CBKU00000000000012345601013');

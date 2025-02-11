@@ -7,6 +7,7 @@ use BitPaySDK\Exceptions\BitPayApiException;
 use BitPaySDK\Exceptions\BitPayGenericException;
 use BitPaySDK\Model\Rate\Rate;
 use BitPaySDK\Model\Rate\Rates;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class RatesTest extends TestCase
@@ -37,6 +38,9 @@ class RatesTest extends TestCase
 
         $expectedRatesArray = [$bch];
         $expectedRates = new Rates($expectedRatesArray);
+        /**
+         * @var Client|MockObject
+         */
         $bp = $this->getMockBuilder(Client::class)->disableOriginalConstructor()->getMock();
         $bp->method('getRates')->willReturn($expectedRates);
 
@@ -61,6 +65,9 @@ class RatesTest extends TestCase
             ]
         ];
         $expectedRates = new Rates($clientApiResponse);
+        /**
+         * @var Client|MockObject
+         */
         $bp = $this->getMockBuilder(Client::class)->disableOriginalConstructor()->getMock();
         $bp->method('getRates')->willReturn($expectedRates);
 

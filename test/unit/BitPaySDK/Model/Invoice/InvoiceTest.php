@@ -13,6 +13,7 @@ use BitPaySDK\Model\Invoice\RefundInfo;
 use BitPaySDK\Model\Invoice\Shopper;
 use BitPaySDK\Model\Invoice\SupportedTransactionCurrencies;
 use BitPaySDK\Model\Invoice\UniversalCodes;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class InvoiceTest extends TestCase
@@ -237,7 +238,10 @@ class InvoiceTest extends TestCase
 
         $invoice = $this->createClassObject();
         $invoice->setForcedBuyerSelectedTransactionCurrency($expectedForcedBuyerSelectedTransactionCurrency);
-        self::assertEquals($expectedForcedBuyerSelectedTransactionCurrency, $invoice->getForcedBuyerSelectedTransactionCurrency());
+        self::assertEquals(
+            $expectedForcedBuyerSelectedTransactionCurrency,
+            $invoice->getForcedBuyerSelectedTransactionCurrency()
+        );
     }
 
     /**
@@ -261,6 +265,9 @@ class InvoiceTest extends TestCase
 
     public function testGetBuyer()
     {
+        /**
+         * @var Buyer|MockObject
+         */
         $expectedBuyer = $this->getMockBuilder(Buyer::class)->getMock();
 
         $invoice = $this->createClassObject();
@@ -401,6 +408,9 @@ class InvoiceTest extends TestCase
 
     public function testGetBuyerProvidedInfo()
     {
+        /**
+         * @var BuyerProvidedInfo|MockObject
+         */
         $expectedBuyerProvidedInfo = $this->getMockBuilder(BuyerProvidedInfo::class)->getMock();
 
         $invoice = $this->createClassObject();
@@ -410,6 +420,9 @@ class InvoiceTest extends TestCase
 
     public function testGetUniversalCodes()
     {
+        /**
+         * @var UniversalCodes|MockObject
+         */
         $expectedUniversalCodes = $this->getMockBuilder(UniversalCodes::class)->getMock();
 
         $invoice = $this->createClassObject();
@@ -419,7 +432,11 @@ class InvoiceTest extends TestCase
 
     public function testGetSupportedTransactionCurrencies()
     {
-        $expectedSupportedTransactionCurrencies = $this->getMockBuilder(SupportedTransactionCurrencies::class)->getMock();
+        /**
+         * @var SupportedTransactionCurrencies|MockObject
+         */
+        $expectedSupportedTransactionCurrencies = $this->getMockBuilder(SupportedTransactionCurrencies::class)
+            ->getMock();
 
         $invoice = $this->createClassObject();
         $invoice->setSupportedTransactionCurrencies($expectedSupportedTransactionCurrencies);
@@ -515,7 +532,7 @@ class InvoiceTest extends TestCase
         $expectedPaymentCodes = [
             'BTC' => [
                 "BIP72b" => "bitcoin:?r=https://test.bitpay.com/i/UZjwcYkWAKfTMn9J1yyfs4",
-                "BIP73"=> "https://test.bitpay.com/i/UZjwcYkWAKfTMn9J1yyfs4"
+                "BIP73" => "https://test.bitpay.com/i/UZjwcYkWAKfTMn9J1yyfs4"
             ],
             "BCH" => [
                 "BIP72b" => "bitcoincash:?r=https://test.bitpay.com/i/UZjwcYkWAKfTMn9J1yyfs4",
@@ -577,6 +594,9 @@ class InvoiceTest extends TestCase
 
     public function testGetMinerFees()
     {
+        /**
+         * @var MinerFees|MockObject
+         */
         $expectedMinerFees = $this->getMockBuilder(MinerFees::class)->getMock();
 
         $invoice = $this->createClassObject();
@@ -593,6 +613,9 @@ class InvoiceTest extends TestCase
 
     public function testGetShopper()
     {
+        /**
+         * @var Shopper|MockObject
+         */
         $expectedShopper = $this->getMockBuilder(Shopper::class)->getMock();
 
         $invoice = $this->createClassObject();
@@ -611,6 +634,9 @@ class InvoiceTest extends TestCase
 
     public function testGetRefundInfo()
     {
+        /**
+         * @var RefundInfo|MockObject
+         */
         $expectedRefundInfo = $this->getMockBuilder(RefundInfo::class)->getMock();
 
         $invoice = $this->createClassObject();
@@ -812,7 +838,7 @@ class InvoiceTest extends TestCase
         $invoice->setId('12');
         $invoice->setUrl('http://test.com');
         $invoice->setStatus('pending');
-        $invoice->setLowFeeDetected('Low fee detected');
+        $invoice->setLowFeeDetected(true);
         $invoice->setInvoiceTime(1620734545366);
         $invoice->setExpirationTime(123456);
         $invoice->setCurrentTime(456789);

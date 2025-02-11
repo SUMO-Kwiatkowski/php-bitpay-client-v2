@@ -125,12 +125,12 @@ class PayoutClient
      * @throws BitPayGenericException
      */
     public function getPayouts(
-        string $startDate = null,
-        string $endDate = null,
-        string $status = null,
-        string $reference = null,
-        int $limit = null,
-        int $offset = null
+        ?string $startDate = null,
+        ?string $endDate = null,
+        ?string $status = null,
+        ?string $reference = null,
+        ?int $limit = null,
+        ?int $offset = null
     ): array {
         $params = [];
         $params["token"] = $this->tokenCache->getTokenByFacade(Facade::PAYOUT);

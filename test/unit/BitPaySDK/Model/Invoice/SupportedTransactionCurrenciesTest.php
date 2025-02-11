@@ -4,6 +4,7 @@ namespace BitPaySDK\Test\Model\Invoice;
 
 use BitPaySDK\Model\Invoice\SupportedTransactionCurrencies;
 use BitPaySDK\Model\Invoice\SupportedTransactionCurrency;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class SupportedTransactionCurrenciesTest extends TestCase
@@ -16,6 +17,9 @@ class SupportedTransactionCurrenciesTest extends TestCase
 
     public function testGetBTC()
     {
+        /**
+         * @var SupportedTransactionCurrency|MockObject
+         */
         $expectedSupportedTransactionCurrency = $this->getMockBuilder(SupportedTransactionCurrency::class)->getMock();
         $supportedTransactionCurrencies = $this->createClassObject();
         $supportedTransactionCurrencies->setBTC($expectedSupportedTransactionCurrency);
@@ -24,6 +28,9 @@ class SupportedTransactionCurrenciesTest extends TestCase
 
     public function testGetBCH()
     {
+        /**
+         * @var SupportedTransactionCurrency|MockObject
+         */
         $expectedSupportedTransactionCurrency = $this->getMockBuilder(SupportedTransactionCurrency::class)->getMock();
         $supportedTransactionCurrencies = $this->createClassObject();
         $supportedTransactionCurrencies->setBCH($expectedSupportedTransactionCurrency);
@@ -32,6 +39,9 @@ class SupportedTransactionCurrenciesTest extends TestCase
 
     public function testGetETH()
     {
+        /**
+         * @var SupportedTransactionCurrency|MockObject
+         */
         $expectedSupportedTransactionCurrency = $this->getMockBuilder(SupportedTransactionCurrency::class)->getMock();
         $supportedTransactionCurrencies = $this->createClassObject();
         $supportedTransactionCurrencies->setETH($expectedSupportedTransactionCurrency);
@@ -40,6 +50,9 @@ class SupportedTransactionCurrenciesTest extends TestCase
 
     public function testGetUSDC()
     {
+        /**
+         * @var SupportedTransactionCurrency|MockObject
+         */
         $expectedSupportedTransactionCurrency = $this->getMockBuilder(SupportedTransactionCurrency::class)->getMock();
         $supportedTransactionCurrencies = $this->createClassObject();
         $supportedTransactionCurrencies->setUSDC($expectedSupportedTransactionCurrency);
@@ -48,6 +61,9 @@ class SupportedTransactionCurrenciesTest extends TestCase
 
     public function testGetGUSD()
     {
+        /**
+         * @var SupportedTransactionCurrency|MockObject
+         */
         $expectedSupportedTransactionCurrency = $this->getMockBuilder(SupportedTransactionCurrency::class)->getMock();
         $supportedTransactionCurrencies = $this->createClassObject();
         $supportedTransactionCurrencies->setGUSD($expectedSupportedTransactionCurrency);
@@ -56,6 +72,9 @@ class SupportedTransactionCurrenciesTest extends TestCase
 
     public function testGetPAX()
     {
+        /**
+         * @var SupportedTransactionCurrency|MockObject
+         */
         $expectedSupportedTransactionCurrency = $this->getMockBuilder(SupportedTransactionCurrency::class)->getMock();
         $supportedTransactionCurrencies = $this->createClassObject();
         $supportedTransactionCurrencies->setPAX($expectedSupportedTransactionCurrency);
@@ -64,6 +83,9 @@ class SupportedTransactionCurrenciesTest extends TestCase
 
     public function testGetXRP()
     {
+        /**
+         * @var SupportedTransactionCurrency|MockObject
+         */
         $expectedSupportedTransactionCurrency = $this->getMockBuilder(SupportedTransactionCurrency::class)->getMock();
         $supportedTransactionCurrencies = $this->createClassObject();
         $supportedTransactionCurrencies->setXRP($expectedSupportedTransactionCurrency);
@@ -72,8 +94,13 @@ class SupportedTransactionCurrenciesTest extends TestCase
 
     public function testToArray()
     {
+        /**
+         * @var SupportedTransactionCurrency|MockObject
+         */
         $expectedSupportedTransactionCurrency = $this->getMockBuilder(SupportedTransactionCurrency::class)->getMock();
-        $expectedSupportedTransactionCurrency->expects(self::once())->method('toArray')->willReturn(['enabled' => true, 'reason' => 'test']);
+        $expectedSupportedTransactionCurrency->expects(self::once())
+            ->method('toArray')
+            ->willReturn(['enabled' => true, 'reason' => 'test']);
         $supportedTransactionCurrencies = $this->createClassObject();
         $supportedTransactionCurrencies->setBTC($expectedSupportedTransactionCurrency);
         $supportedTransactionCurrenciesArray = $supportedTransactionCurrencies->toArray();

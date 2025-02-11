@@ -90,7 +90,7 @@ function selectTokens(OutputInterface $output, mixed $helper, InputInterface $in
         $shouldGenerateMerchant = true;
         $shouldGeneratePayout = true;
     }
-    
+
     return [$shouldGenerateMerchant, $shouldGeneratePayout];
 }
 
@@ -144,6 +144,9 @@ function getPublicKey(string $privateKeyLocation, string $password): PublicKey {
     $storageEngine = new EncryptedFilesystemStorage($password);
     try {
         //  Use the EncryptedFilesystemStorage to load the Merchant's encrypted private key with the Master Password.
+        /**
+         * @var PrivateKey
+         */
         $privateKey = $storageEngine->load($privateKeyLocation);
     } catch (\Exception $ex) {
         //  Check if the loaded keys is a valid key
@@ -255,13 +258,13 @@ function getPayoutToken(
     ->setHelp($help)
     ->setCode(function (InputInterface $input, OutputInterface $output): int {
         $helper = $this->getHelper('question');
-        
+
         try {
             $env = getEnv($output, $helper, $input);
             $apiUrl = $env === 'P' ? 'https://bitpay.com' : 'https://test.bitpay.com';
             $password = getPrivateKeyPassword($helper, $input, $output);
             $privateKeyLocation = getPrivateKeyLocation($helper, $input, $output);
-            
+
             [$shouldGenerateMerchant, $shouldGeneratePayout] = selectTokens($output, $helper, $input);
             $publicKey = getPublicKey($privateKeyLocation, $password);
             $sin = getSin($publicKey);

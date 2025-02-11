@@ -41,9 +41,6 @@ class PayoutRecipientsTest extends TestCase
         self::assertEquals($expectedPayoutRecipients[0]->toArray(), $payoutRecipients->getRecipients()[0]->toArray());
     }
 
-    /**
-     * @throws \BitPaySDK\Exceptions\PayoutRecipientException
-     */
     public function testGetRecipientsArray()
     {
         $payoutRecipient = new PayoutRecipient();
@@ -101,8 +98,14 @@ class PayoutRecipientsTest extends TestCase
         self::assertEquals('success', $payoutRecipientsArray['recipients'][0]['status']);
         self::assertEquals('abcd123', $payoutRecipientsArray['recipients'][0]['id']);
         self::assertEquals('efgh456', $payoutRecipientsArray['recipients'][0]['shopperId']);
-        self::assertEquals('6RZSTPtnzEaroAe2X4YijenRiqteRDNvzbT8NjtcHjUVd9FUFwa7dsX8RFgRDDC5SL', $payoutRecipientsArray['recipients'][0]['token']);
-        self::assertEquals('6RZSTPtnzEaroAe2X4YijenRiqteRDNvzbT8NjtcHjUVd9FUFwa7dsX8RFgRDDC5SL', $payoutRecipientsArray['token']);
+        self::assertEquals(
+            '6RZSTPtnzEaroAe2X4YijenRiqteRDNvzbT8NjtcHjUVd9FUFwa7dsX8RFgRDDC5SL',
+            $payoutRecipientsArray['recipients'][0]['token']
+        );
+        self::assertEquals(
+            '6RZSTPtnzEaroAe2X4YijenRiqteRDNvzbT8NjtcHjUVd9FUFwa7dsX8RFgRDDC5SL',
+            $payoutRecipientsArray['token']
+        );
     }
 
     public function testToArrayEmptyKey()

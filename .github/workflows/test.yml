@@ -3,21 +3,20 @@ name: Test
 on: [push, pull_request]
 
 jobs:
-
   phpunit10:
     runs-on: ubuntu-20.04
 
     strategy:
       matrix:
-        php-version: ['8.1', '8.2', '8.3']
+        php-version: ["8.1", "8.2", "8.3", "8.4"]
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: php-actions/composer@v5
+      - uses: actions/checkout@v4
+      - uses: php-actions/composer@v6
         with:
           php_version: ${{ matrix.php-version }}
           args: --ignore-platform-reqs
-      - uses: php-actions/phpunit@v3
+      - uses: php-actions/phpunit@v4
         with:
           configuration: phpunit.xml
           php_version: ${{ matrix.php-version }}
@@ -31,8 +30,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: php-actions/composer@v5
+      - uses: actions/checkout@v4
+      - uses: php-actions/composer@v6
         with:
           php_version: 8.1
           php_extensions: bcmath gmp xdebug

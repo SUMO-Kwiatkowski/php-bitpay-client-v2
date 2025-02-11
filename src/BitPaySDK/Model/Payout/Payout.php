@@ -10,6 +10,7 @@ namespace BitPaySDK\Model\Payout;
 
 use BitPaySDK\Exceptions\BitPayExceptionProvider;
 use BitPaySDK\Exceptions\BitPayValidationException;
+use BitPaySDK\Exceptions\BitPayGenericException;
 use BitPaySDK\Model\Currency;
 
 /**
@@ -58,7 +59,7 @@ class Payout
      *                           default to the active ledger currency on your account, e.g. your settlement
      *                           currency.
      */
-    public function __construct(float $amount = null, string $currency = null, string $ledgerCurrency = null)
+    public function __construct(?float $amount = null, ?string $currency = null, ?string $ledgerCurrency = null)
     {
         $this->amount = $amount;
         $this->currency = $currency;
@@ -376,7 +377,7 @@ class Payout
      * BitPay personal accounts before completing the payment.
      * This can allow merchants to monitor the activity of a customer (deposits and payouts).
      *
-     * @return string
+     * @return string|null
      */
     public function getShopperId(): ?string
     {
@@ -641,13 +642,13 @@ class Payout
      * Sets transactions. Contains the cryptocurrency transaction details for the executed payout request.
      *
      * @param PayoutTransaction[] $transactions
-     * @throws PayoutException
+     * @throws BitPayGenericException
      */
     public function setTransactions(array $transactions): void
     {
         foreach ($transactions as $transaction) {
             if (!$transaction instanceof PayoutTransaction) {
-                throw new PayoutException(
+                BitPayExceptionProvider::throwGenericExceptionWithMessage(
                     'Wrong type of transactions array. They should contains only PayoutTransaction objects'
                 );
             }

@@ -257,10 +257,10 @@ class Client
     public function getInvoices(
         string $dateStart,
         string $dateEnd,
-        string $status = null,
-        string $orderId = null,
-        int $limit = null,
-        int $offset = null
+        ?string $status = null,
+        ?string $orderId = null,
+        ?int $limit = null,
+        ?int $offset = null
     ): array {
         $invoiceClient = $this->getInvoiceClient();
 
@@ -581,7 +581,7 @@ class Client
      * @throws BitPayApiException
      * @throws BitPayGenericException
      */
-    public function getBills(string $status = null): array
+    public function getBills(?string $status = null): array
     {
         $billClient = $this->getBillClient();
 
@@ -762,7 +762,7 @@ class Client
      * @throws BitPayApiException
      * @throws BitPayGenericException
      */
-    public function getPayoutRecipients(string $status = null, int $limit = null, int $offset = null): array
+    public function getPayoutRecipients(?string $status = null, ?int $limit = null, ?int $offset = null): array
     {
         $payoutRecipientsClient = $this->getPayoutRecipientsClient();
 
@@ -874,12 +874,12 @@ class Client
      * @throws BitPayApiException
      */
     public function getPayouts(
-        string $startDate = null,
-        string $endDate = null,
-        string $status = null,
-        string $reference = null,
-        int $limit = null,
-        int $offset = null
+        ?string $startDate = null,
+        ?string $endDate = null,
+        ?string $status = null,
+        ?string $reference = null,
+        ?int $limit = null,
+        ?int $offset = null
     ): array {
         $payoutClient = $this->getPayoutClient();
 
@@ -972,9 +972,9 @@ class Client
         string $currency,
         string $dateStart,
         string $dateEnd,
-        string $status = null,
-        int $limit = null,
-        int $offset = null
+        ?string $status = null,
+        ?int $limit = null,
+        ?int $offset = null
     ): array {
         $settlementsClient = $this->getSettlementClient();
 

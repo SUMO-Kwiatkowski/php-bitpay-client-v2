@@ -51,7 +51,7 @@ class WalletTest extends TestCase
 
     public function testGetCurrencies()
     {
-        $currencyQr = new CurrencyQr;
+        $currencyQr = new CurrencyQr();
         $currencyQr->setType('BIP21');
         $currencyQr->setCollapsed(false);
 
@@ -91,7 +91,7 @@ class WalletTest extends TestCase
     public function modifyOffChainMode(): void
     {
         $testedClass = $this->createClassObject();
-        $expected = 'someValue';
+        $expected = true;
         $testedClass->setOffChainMode($expected);
 
         self::assertEquals($expected, $testedClass->getOffChainMode());
@@ -145,7 +145,7 @@ class WalletTest extends TestCase
 
     private function objectSetters(Wallet $wallet): void
     {
-        $currencyQr = new CurrencyQr;
+        $currencyQr = new CurrencyQr();
         $currencyQr->setType('BIP21');
         $currencyQr->setCollapsed(false);
 

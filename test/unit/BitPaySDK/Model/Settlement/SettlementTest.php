@@ -6,6 +6,7 @@ use BitPaySDK\Model\Settlement\PayoutInfo;
 use BitPaySDK\Model\Settlement\Settlement;
 use BitPaySDK\Model\Settlement\SettlementLedgerEntry;
 use BitPaySDK\Model\Settlement\WithHoldings;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class SettlementTest extends TestCase
@@ -48,6 +49,9 @@ class SettlementTest extends TestCase
 
     public function testGetPayoutInfo()
     {
+        /**
+         * @var PayoutInfo|MockObject
+         */
         $expectedPayoutInfo = $this->getMockBuilder(PayoutInfo::class)->getMock();
 
         $settlement = $this->createClassObject();
@@ -155,9 +159,6 @@ class SettlementTest extends TestCase
         self::assertEquals($expectedTotalAmount, $settlement->getTotalAmount());
     }
 
-    /**
-     * @throws \BitPaySDK\Exceptions\SettlementException
-     */
     public function testGetLedgerEntries()
     {
         $settlement = $this->createClassObject();
@@ -177,9 +178,6 @@ class SettlementTest extends TestCase
         self::assertEquals($expectedToken, $settlement->getToken());
     }
 
-    /**
-     * @throws \BitPaySDK\Exceptions\SettlementException
-     */
     public function testToArray()
     {
         $settlement = $this->createClassObject();
@@ -231,9 +229,6 @@ class SettlementTest extends TestCase
         return new Settlement();
     }
 
-    /**
-     * @throws \BitPaySDK\Exceptions\SettlementException
-     */
     private function prepareSettlementForTests(Settlement $settlement)
     {
         $withHoldings = new WithHoldings();

@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Copyright (c) 2019 BitPay
  **/
+
 declare(strict_types=1);
 
 namespace BitPaySDK\Functional;
@@ -34,7 +36,10 @@ class BillClientTest extends AbstractClientTestCase
     {
         $bill = new Bill();
         $this->expectException(BitPayGenericException::class);
-        $this->client->createBill($bill, "Validation errors occurred: Valid email required if emailBill is not set to false.");
+        $this->client->createBill(
+            $bill,
+            "Validation errors occurred: Valid email required if emailBill is not set to false."
+        );
     }
 
     public function testGetBill(): void

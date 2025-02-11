@@ -108,7 +108,7 @@ class BillClient
      * @throws BitPayApiException
      * @throws BitPayGenericException
      */
-    public function getBills(string $status = null): array
+    public function getBills(?string $status = null): array
     {
         $params = [];
         $params["token"] = $this->tokenCache->getTokenByFacade(Facade::MERCHANT);

@@ -80,7 +80,7 @@ class RefundClient
         bool $preview = false,
         bool $immediate = false,
         bool $buyerPaysRefundFee = false,
-        string $guid = null
+        ?string $guid = null
     ): Refund {
         $params = [];
         $params["token"] = $this->tokenCache->getTokenByFacade(Facade::MERCHANT);

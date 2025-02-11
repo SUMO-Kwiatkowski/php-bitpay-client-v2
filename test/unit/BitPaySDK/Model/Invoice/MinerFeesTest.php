@@ -4,6 +4,7 @@ namespace BitPaySDK\Test\Model\Invoice;
 
 use BitPaySDK\Model\Invoice\MinerFees;
 use BitPaySDK\Model\Invoice\MinerFeesItem;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class MinerFeesTest extends TestCase
@@ -16,6 +17,9 @@ class MinerFeesTest extends TestCase
 
     public function testGetBTC()
     {
+        /**
+         * @var MinerFeesItem|MockObject
+         */
         $expectedBTC = $this->getMockBuilder(MinerFeesItem::class)->getMock();
 
         $minesFees = $this->createClassObject();
@@ -25,6 +29,9 @@ class MinerFeesTest extends TestCase
 
     public function testGetBCH()
     {
+        /**
+         * @var MinerFeesItem|MockObject
+         */
         $expectedBCH = $this->getMockBuilder(MinerFeesItem::class)->getMock();
 
         $minesFees = $this->createClassObject();
@@ -34,6 +41,9 @@ class MinerFeesTest extends TestCase
 
     public function testGetETH()
     {
+        /**
+         * @var MinerFeesItem|MockObject
+         */
         $expectedETH = $this->getMockBuilder(MinerFeesItem::class)->getMock();
 
         $minesFees = $this->createClassObject();
@@ -43,6 +53,9 @@ class MinerFeesTest extends TestCase
 
     public function testGetUSDC()
     {
+        /**
+         * @var MinerFeesItem|MockObject
+         */
         $expectedUSDC = $this->getMockBuilder(MinerFeesItem::class)->getMock();
 
         $minesFees = $this->createClassObject();
@@ -52,6 +65,9 @@ class MinerFeesTest extends TestCase
 
     public function testGetGUSD()
     {
+        /**
+         * @var MinerFeesItem|MockObject
+         */
         $expectedGUSD = $this->getMockBuilder(MinerFeesItem::class)->getMock();
 
         $minesFees = $this->createClassObject();
@@ -61,6 +77,9 @@ class MinerFeesTest extends TestCase
 
     public function testGetPAX()
     {
+        /**
+         * @var MinerFeesItem|MockObject
+         */
         $expectedPAX = $this->getMockBuilder(MinerFeesItem::class)->getMock();
 
         $minesFees = $this->createClassObject();
@@ -70,6 +89,9 @@ class MinerFeesTest extends TestCase
 
     public function testGetBUSD()
     {
+        /**
+         * @var MinerFeesItem|MockObject
+         */
         $expectedBUSD = $this->getMockBuilder(MinerFeesItem::class)->getMock();
 
         $minesFees = $this->createClassObject();
@@ -79,6 +101,9 @@ class MinerFeesTest extends TestCase
 
     public function testGetXRP()
     {
+        /**
+         * @var MinerFeesItem|MockObject
+         */
         $expectedXRP = $this->getMockBuilder(MinerFeesItem::class)->getMock();
 
         $minesFees = $this->createClassObject();
@@ -88,6 +113,9 @@ class MinerFeesTest extends TestCase
 
     public function testGetDOGE()
     {
+        /**
+         * @var MinerFeesItem|MockObject
+         */
         $expectedDOGE = $this->getMockBuilder(MinerFeesItem::class)->getMock();
 
         $minesFees = $this->createClassObject();
@@ -97,6 +125,9 @@ class MinerFeesTest extends TestCase
 
     public function testGetLTC()
     {
+        /**
+         * @var MinerFeesItem|MockObject
+         */
         $expectedLTC = $this->getMockBuilder(MinerFeesItem::class)->getMock();
 
         $minesFees = $this->createClassObject();
@@ -106,8 +137,13 @@ class MinerFeesTest extends TestCase
 
     public function testToArray()
     {
+        /**
+         * @var MinerFeesItem|MockObject
+         */
         $expectedMinerFeesItem = $this->getMockBuilder(MinerFeesItem::class)->getMock();
-        $expectedMinerFeesItem->expects(self::once())->method('toArray')->willReturn(['satoshisPerByte' => 1.1, 'totalFee' => 1.1, 'fiatAmount' => 1.1]);
+        $expectedMinerFeesItem->expects(self::once())
+            ->method('toArray')
+            ->willReturn(['satoshisPerByte' => 1.1, 'totalFee' => 1.1, 'fiatAmount' => 1.1]);
         $minesFees = $this->createClassObject();
         $minesFees->setBTC($expectedMinerFeesItem);
         $minesFeesArray = $minesFees->toArray();
@@ -117,7 +153,10 @@ class MinerFeesTest extends TestCase
 
         self::assertArrayHasKey('btc', $minesFeesArray);
         self::assertArrayNotHasKey('bch', $minesFeesArray);
-        self::assertEquals(['btc' => ['satoshisPerByte' => 1.1,  'totalFee' => 1.1, 'fiatAmount' => 1.1]], $minesFeesArray);
+        self::assertEquals(
+            ['btc' => ['satoshisPerByte' => 1.1,  'totalFee' => 1.1, 'fiatAmount' => 1.1]],
+            $minesFeesArray
+        );
     }
 
     public function testToArrayEmptyKey()
