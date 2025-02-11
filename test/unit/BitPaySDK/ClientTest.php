@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Copyright (c) 2019 BitPay
  **/
+
 declare(strict_types=1);
 
 namespace BitPaySDK\Test;
@@ -37,9 +39,11 @@ use BitPaySDK\Model\Wallet\Wallet;
 use BitPaySDK\Tokens;
 use BitPaySDK\Util\RESTcli\RESTcli;
 use Exception;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
-
 
 class ClientTest extends TestCase
 {
@@ -49,10 +53,10 @@ class ClientTest extends TestCase
     private const TEST_INVOICE_ID = 'UZjwcYkWAKfTMn9J1yyfs4';
     private const TEST_INVOICE_TOKEN = 'cM78LHk17Q8fktDE6QLBBFfvH1QKBhRkHibTLcxhgzsu3VDRvSyu3CGi17DuwYxhT';
     private const TEST_INVOICE_GUID = 'chc9kj52-04g0-4b6f-941d-3a844e352758';
-    private const CORRECT_JSON_STRING = '[ 
-        { "currency": "EUR", "balance": 0 }, 
-        { "currency": "USD", "balance": 2389.82 }, 
-        { "currency": "BTC", "balance": 0.000287 } 
+    private const CORRECT_JSON_STRING = '[
+        { "currency": "EUR", "balance": 0 },
+        { "currency": "USD", "balance": 2389.82 },
+        { "currency": "BTC", "balance": 0.000287 }
     ]';
     private const CANCEL_REFUND_JSON_STRING = '{
         "id": "WoE46gSLkJQS48RJEiNw3L",
@@ -100,6 +104,9 @@ class ClientTest extends TestCase
      */
     public function testWithData()
     {
+        /**
+         * @var Tokens|MockObject
+         */
         $tokens = $this->createMock(Tokens::class);
         $result = $this->getTestedClassInstance()::createWithData(
             Env::TEST,
@@ -116,6 +123,9 @@ class ClientTest extends TestCase
      */
     public function testWithDataAndXBitPayPlatformInfoHeader()
     {
+        /**
+         * @var Tokens|MockObject
+         */
         $tokens = $this->createMock(Tokens::class);
         $result = $this->getTestedClassInstance()::createWithData(
             Env::TEST,
@@ -132,6 +142,9 @@ class ClientTest extends TestCase
     public function testWithDataException()
     {
         $instance = $this->getTestedClassInstance();
+        /**
+         * @var Tokens|MockObject
+         */
         $tokens = $this->createMock(Tokens::class);
         $this->expectException(BitPayGenericException::class);
 
@@ -219,6 +232,9 @@ class ClientTest extends TestCase
         $expectedStatus = 'draft';
         $expectedToken = 'qVVgRARN6fKtNZ7Tcq6qpoPBBE3NxdrmdMD883RyMK4Pf8EHENKVxCXhRwyynWveo';
 
+        /**
+         * @var Bill|MockObject
+         */
         $billMock = $this->createMock(Bill::class);
         $billToArray = [
             'id' => $expectedId,
@@ -244,6 +260,9 @@ class ClientTest extends TestCase
 
     public function testCreateBillException()
     {
+        /**
+         * @var Bill|MockObject
+         */
         $billMock = $this->createMock(Bill::class);
         $restCliMock = $this->getRestCliMock();
         $billToArray = [
@@ -267,6 +286,9 @@ class ClientTest extends TestCase
 
     public function testCreateBillShouldCatchRestCliException()
     {
+        /**
+         * @var Bill|MockObject
+         */
         $billMock = $this->createMock(Bill::class);
         $billToArray = [
             'id' => 'testId',
@@ -290,6 +312,9 @@ class ClientTest extends TestCase
 
     public function testCreateBillShouldCatchJsonMapperException()
     {
+        /**
+         * @var Bill|MockObject
+         */
         $billMock = $this->createMock(Bill::class);
         $exampleBillId = 'testId';
         $exampleBadResponse = file_get_contents(__DIR__ . '/jsonResponse/badResponse.json');
@@ -453,10 +478,7 @@ class ClientTest extends TestCase
         $client->getBills($status);
     }
 
-    /**
-     * @throws BitPayApiException
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetBillsShouldCatchRestCliException()
     {
         $params['token'] = self::MERCHANT_TOKEN;
@@ -477,6 +499,9 @@ class ClientTest extends TestCase
 
     public function testUpdateBill()
     {
+        /**
+         * @var Bill|MockObject
+         */
         $billMock = $this->createMock(Bill::class);
         $exampleResponse = file_get_contents(__DIR__ . '/jsonResponse/getBill.json');
 
@@ -511,6 +536,9 @@ class ClientTest extends TestCase
 
     public function testUpdateBillShouldCatchRestCliBitPayException()
     {
+        /**
+         * @var Bill|MockObject
+         */
         $billMock = $this->createMock(Bill::class);
         $params['token'] = self::MERCHANT_TOKEN;
         $exampleBillId = 'X6KJbe9RxAGWNReCwd1xRw';
@@ -544,6 +572,9 @@ class ClientTest extends TestCase
 
     public function testUpdateBillShouldCatchRestCliException()
     {
+        /**
+         * @var Bill|MockObject
+         */
         $billMock = $this->createMock(Bill::class);
         $params['token'] = self::MERCHANT_TOKEN;
         $exampleBillId = 'X6KJbe9RxAGWNReCwd1xRw';
@@ -577,6 +608,9 @@ class ClientTest extends TestCase
 
     public function testUpdateBillShouldCatchJsonMapperException()
     {
+        /**
+         * @var Bill|MockObject
+         */
         $billMock = $this->createMock(Bill::class);
         $params['token'] = self::MERCHANT_TOKEN;
         $exampleBillId = 'X6KJbe9RxAGWNReCwd1xRw';
@@ -810,6 +844,9 @@ class ClientTest extends TestCase
 
     public function testSubmitPayoutRecipients()
     {
+        /**
+         * @var PayoutRecipients|MockObject
+         */
         $payoutRecipientsMock = $this->createMock(PayoutRecipients::class);
         $exampleRecipientId = 'X6KJbe9RxAGWNReCwd1xRw';
         $exampleResponse = file_get_contents(__DIR__ . '/jsonResponse/submitPayoutRecipientsResponse.json');
@@ -834,6 +871,9 @@ class ClientTest extends TestCase
 
     public function testSubmitPayoutRecipientsShouldCatchRestCliBitPayException()
     {
+        /**
+         * @var PayoutRecipients|MockObject
+         */
         $payoutRecipientsMock = $this->createMock(PayoutRecipients::class);
         $exampleRecipientId = 'X6KJbe9RxAGWNReCwd1xRw';
         $payoutRecipientToArray = [
@@ -857,6 +897,9 @@ class ClientTest extends TestCase
 
     public function testSubmitPayoutRecipientsShouldCatchRestCliException()
     {
+        /**
+         * @var PayoutRecipients|MockObject
+         */
         $payoutRecipientsMock = $this->createMock(PayoutRecipients::class);
         $exampleRecipientId = 'X6KJbe9RxAGWNReCwd1xRw';
         $payoutRecipientToArray = [
@@ -878,11 +921,12 @@ class ClientTest extends TestCase
         $client->submitPayoutRecipients($payoutRecipientsMock);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testSubmitPayoutRecipientsShouldCatchJsonMapperException()
     {
+        /**
+         * @var PayoutRecipients|MockObject
+         */
         $payoutRecipientsMock = $this->createMock(PayoutRecipients::class);
         $exampleRecipientId = 'X6KJbe9RxAGWNReCwd1xRw';
         $badResponse = file_get_contents(__DIR__ . '/jsonResponse/badResponse.json');
@@ -1084,6 +1128,9 @@ class ClientTest extends TestCase
     {
         $exampleRecipientId = 'X3icwc4tE8KJ5hEPNPpDXW';
         $exampleResponse = file_get_contents(__DIR__ . '/jsonResponse/getPayoutRecipient.json');
+        /**
+         * @var PayoutRecipient|MockObject
+         */
         $payoutRecipientMock = $this->createMock(PayoutRecipient::class);
         $payoutRecipientToArray = [
             'token' => self::MERCHANT_TOKEN,
@@ -1106,6 +1153,9 @@ class ClientTest extends TestCase
     public function testUpdatePayoutRecipientShouldCatchRestCliBitPayException()
     {
         $exampleRecipientId = 'X3icwc4tE8KJ5hEPNPpDXW';
+        /**
+         * @var PayoutRecipient|MockObject
+         */
         $payoutRecipientMock = $this->createMock(PayoutRecipient::class);
         $payoutRecipientToArray = [
             'token' => self::MERCHANT_TOKEN,
@@ -1128,6 +1178,9 @@ class ClientTest extends TestCase
     public function testUpdatePayoutRecipientShouldCatchRestCliException()
     {
         $exampleRecipientId = 'X3icwc4tE8KJ5hEPNPpDXW';
+        /**
+         * @var PayoutRecipient|MockObject
+         */
         $payoutRecipientMock = $this->createMock(PayoutRecipient::class);
         $payoutRecipientToArray = [
             'token' => self::MERCHANT_TOKEN,
@@ -1150,6 +1203,9 @@ class ClientTest extends TestCase
     public function testUpdatePayoutRecipientShouldCatchJsonMapperException()
     {
         $exampleRecipientId = 'X3icwc4tE8KJ5hEPNPpDXW';
+        /**
+         * @var PayoutRecipient|MockObject
+         */
         $payoutRecipientMock = $this->createMock(PayoutRecipient::class);
         $badResponse = file_get_contents(__DIR__ . '/jsonResponse/badResponse.json');
 
@@ -1807,15 +1863,13 @@ class ClientTest extends TestCase
         $client->getSettlementReconciliationReport($exampleId, $exampleToken);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetPayout()
     {
         $params['token'] = self::MERCHANT_TOKEN;
         $restCliMock = $this->getRestCliMock();
         $exampleResponse = file_get_contents(__DIR__ . '/jsonResponse/getPayout.json');
-        $exampleResponseArray = json_decode($exampleResponse,  true);
+        $exampleResponseArray = json_decode($exampleResponse, true);
         $payoutId = $exampleResponseArray['id'];
         $restCliMock->expects(self::once())->method('get')
             ->with("payouts/" . $payoutId, $params)
@@ -1825,15 +1879,13 @@ class ClientTest extends TestCase
         self::assertEquals(self::MERCHANT_TOKEN, $result->getToken());
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetPayoutShouldHandleRestCliBitPayException()
     {
         $params['token'] = self::MERCHANT_TOKEN;
         $restCliMock = $this->getRestCliMock();
         $exampleResponse = file_get_contents(__DIR__ . '/jsonResponse/getPayout.json');
-        $exampleResponseArray = json_decode($exampleResponse,  true);
+        $exampleResponseArray = json_decode($exampleResponse, true);
         $payoutId = $exampleResponseArray['id'];
         $restCliMock->expects(self::once())->method('get')
             ->with("payouts/" . $payoutId, $params)
@@ -1849,7 +1901,7 @@ class ClientTest extends TestCase
         $params['token'] = self::MERCHANT_TOKEN;
         $restCliMock = $this->getRestCliMock();
         $exampleResponse = file_get_contents(__DIR__ . '/jsonResponse/getPayout.json');
-        $exampleResponseArray = json_decode($exampleResponse,  true);
+        $exampleResponseArray = json_decode($exampleResponse, true);
         $payoutId = $exampleResponseArray['id'];
         $restCliMock->expects(self::once())->method('get')
             ->with("payouts/" . $payoutId, $params)
@@ -1860,15 +1912,13 @@ class ClientTest extends TestCase
         $client->getPayout($payoutId);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetPayoutShouldHandleRestCliException()
     {
         $params['token'] = self::MERCHANT_TOKEN;
         $restCliMock = $this->getRestCliMock();
         $exampleResponse = file_get_contents(__DIR__ . '/jsonResponse/getPayout.json');
-        $exampleResponseArray = json_decode($exampleResponse,  true);
+        $exampleResponseArray = json_decode($exampleResponse, true);
         $payoutId = $exampleResponseArray['id'];
         $restCliMock->expects(self::once())->method('get')
             ->with("payouts/" . $payoutId, $params)
@@ -1904,9 +1954,7 @@ class ClientTest extends TestCase
         self::assertInstanceOf(Payout::class, $result[0]);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetPayoutsShouldHandleRestCliBitPayException()
     {
         $params = $this->getPayoutParams();
@@ -2027,6 +2075,9 @@ class ClientTest extends TestCase
 
     public function testSubmitPayout()
     {
+        /**
+         * @var Payout|MockObject
+         */
         $payoutMock = $this->createMock(Payout::class);
         $exampleCurrency = Currency::USD;
         $payoutBatchToArray = [
@@ -2048,6 +2099,9 @@ class ClientTest extends TestCase
 
     public function testSubmitPayoutShouldCatchRestCliBitPayException()
     {
+        /**
+         * @var Payout|MockObject
+         */
         $payoutMock = $this->createMock(Payout::class);
         $exampleCurrency = Currency::USD;
         $payoutBatchToArray = [
@@ -2068,6 +2122,9 @@ class ClientTest extends TestCase
 
     public function testSubmitPayoutShouldCatchRestCliException()
     {
+        /**
+         * @var Payout|MockObject
+         */
         $payoutMock = $this->createMock(Payout::class);
         $exampleCurrency = Currency::USD;
         $payoutBatchToArray = [
@@ -2088,6 +2145,9 @@ class ClientTest extends TestCase
 
     public function testSubmitPayoutShouldCatchJsonMapperException()
     {
+        /**
+         * @var Payout|MockObject
+         */
         $payoutMock = $this->createMock(Payout::class);
         $exampleCurrency = Currency::USD;
         $payoutBatchToArray = [
@@ -2296,7 +2356,10 @@ class ClientTest extends TestCase
     {
         $params = $this->getInvoiceRefundParams();
         $restCliMock = $this->getRestCliMock();
-        $restCliMock->expects(self::once())->method('post')->with("refunds/", $params, true)->willReturn(self::CORRUPT_JSON_STRING);
+        $restCliMock->expects(self::once())
+            ->method('post')
+            ->with("refunds/", $params, true)
+            ->willReturn(self::CORRUPT_JSON_STRING);
         $client = $this->getClient($restCliMock);
         $this->expectException(BitPayGenericException::class);
 
@@ -2584,9 +2647,7 @@ class ClientTest extends TestCase
         self::assertInstanceOf(Refund::class, $result[0]);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetRefundsShouldCatchRestCliBitPayException()
     {
         $params['token'] = self::MERCHANT_TOKEN;
@@ -2602,9 +2663,7 @@ class ClientTest extends TestCase
         $client->getRefunds($exampleInvoiceId);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetRefundsShouldCatchRestCliException()
     {
         $params['token'] = self::MERCHANT_TOKEN;
@@ -2621,9 +2680,7 @@ class ClientTest extends TestCase
         $client->getRefunds($exampleInvoiceId);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetRefundsShouldCatchJsonMapperException()
     {
         $params['token'] = self::MERCHANT_TOKEN;
@@ -2640,9 +2697,7 @@ class ClientTest extends TestCase
         $client->getRefunds($exampleInvoiceId);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetRefund()
     {
         $params['token'] = self::MERCHANT_TOKEN;
@@ -2663,9 +2718,7 @@ class ClientTest extends TestCase
         self::assertInstanceOf(Refund::class, $result);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetRefundShouldCatchRestCliBitPayException()
     {
         $params['token'] = self::MERCHANT_TOKEN;
@@ -2681,9 +2734,7 @@ class ClientTest extends TestCase
         $client->getRefund($exampleRefundId);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetRefundShouldCatchRestCliException()
     {
         $params['token'] = self::MERCHANT_TOKEN;
@@ -2699,9 +2750,7 @@ class ClientTest extends TestCase
         $client->getRefund($exampleRefundId);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetRefundShouldCatchRestCliJsonMapperException()
     {
         $params['token'] = self::MERCHANT_TOKEN;
@@ -2737,9 +2786,7 @@ class ClientTest extends TestCase
         self::assertInstanceOf(Refund::class, $result);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetRefundByGuidShouldCatchRestCliBitPayException()
     {
         $params['token'] = self::MERCHANT_TOKEN;
@@ -2755,9 +2802,7 @@ class ClientTest extends TestCase
         $client->getRefundByGuid($guid);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetRefundByGuidShouldCatchRestCliException()
     {
         $params['token'] = self::MERCHANT_TOKEN;
@@ -2773,9 +2818,7 @@ class ClientTest extends TestCase
         $client->getRefundByGuid($guid);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testGetRefundByGuidShouldCatchRestCliJsonMapperException()
     {
         $params['token'] = self::MERCHANT_TOKEN;
@@ -2791,9 +2834,7 @@ class ClientTest extends TestCase
         $client->getRefundByGuid($guid);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testSendRefundNotification()
     {
         $exampleRefundId = 'testId';
@@ -2810,9 +2851,7 @@ class ClientTest extends TestCase
         self::assertIsBool($result);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testSendRefundNotificationShouldCatchRestCliBitPayException()
     {
         $exampleRefundId = 'testId';
@@ -2829,9 +2868,7 @@ class ClientTest extends TestCase
         $client->sendRefundNotification($exampleRefundId, $exampleRefundToken);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testSendRefundNotificationShouldCatchRestCliException()
     {
         $exampleRefundId = 'testId';
@@ -2848,9 +2885,7 @@ class ClientTest extends TestCase
         $client->sendRefundNotification($exampleRefundId, $exampleRefundToken);
     }
 
-    /**
-     * @depends testWithFileJsonConfig
-     */
+    #[Depends('testWithFileJsonConfig')]
     public function testSendRefundNotificationShouldCatchJsonMapperException()
     {
         $exampleRefundId = 'testId';
@@ -2868,14 +2903,14 @@ class ClientTest extends TestCase
 
     public function testGetInvoice()
     {
-        $exampleInvoiceObject = json_decode(file_get_contents(__DIR__.'/jsonResponse/getInvoice.json'));
+        $exampleInvoiceObject = json_decode(file_get_contents(__DIR__ . '/jsonResponse/getInvoice.json'));
 
         $restCliMock = $this->getRestCliMock();
         $restCliMock
             ->expects(self::once())
             ->method("get")
             ->with('invoices/' . $exampleInvoiceObject->id, ['token' => self::MERCHANT_TOKEN], true)
-            ->willReturn(file_get_contents(__DIR__.'/jsonResponse/getInvoice.json'));
+            ->willReturn(file_get_contents(__DIR__ . '/jsonResponse/getInvoice.json'));
 
         $testedObject = $this->getClient($restCliMock);
         $result = $testedObject->getInvoice($exampleInvoiceObject->id, Facade::MERCHANT, true);
@@ -2887,14 +2922,14 @@ class ClientTest extends TestCase
 
     public function testGetInvoiceByGuid()
     {
-        $exampleInvoiceObject = json_decode(file_get_contents(__DIR__.'/jsonResponse/getInvoice.json'));
+        $exampleInvoiceObject = json_decode(file_get_contents(__DIR__ . '/jsonResponse/getInvoice.json'));
 
         $restCliMock = $this->getRestCliMock();
         $restCliMock
             ->expects(self::once())
             ->method("get")
             ->with('invoices/guid/' . $exampleInvoiceObject->guid, ['token' => self::MERCHANT_TOKEN], true)
-            ->willReturn(file_get_contents(__DIR__.'/jsonResponse/getInvoice.json'));
+            ->willReturn(file_get_contents(__DIR__ . '/jsonResponse/getInvoice.json'));
 
         $testedObject = $this->getClient($restCliMock);
         $result = $testedObject->getInvoiceByGuid($exampleInvoiceObject->guid, Facade::MERCHANT, true);
@@ -2906,7 +2941,7 @@ class ClientTest extends TestCase
 
     public function testGetInvoiceShouldCatchRestCliExceptions(): void
     {
-        $exampleInvoiceObject = json_decode(file_get_contents(__DIR__.'/jsonResponse/getInvoice.json'));
+        $exampleInvoiceObject = json_decode(file_get_contents(__DIR__ . '/jsonResponse/getInvoice.json'));
 
         $restCliMock = $this->getRestCliMock();
         $restCliMock
@@ -2923,7 +2958,7 @@ class ClientTest extends TestCase
 
     public function testGetInvoiceShouldCatchJsonMapperException()
     {
-        $exampleInvoiceObject = json_decode(file_get_contents(__DIR__.'/jsonResponse/getInvoice.json'));
+        $exampleInvoiceObject = json_decode(file_get_contents(__DIR__ . '/jsonResponse/getInvoice.json'));
 
         $restCliMock = $this->getRestCliMock();
         $restCliMock
@@ -2965,7 +3000,8 @@ class ClientTest extends TestCase
             $params['status'],
             $params['orderId'],
             $params['limit'],
-            $params['offset']);
+            $params['offset']
+        );
 
         $responseToCompare = json_decode($successResponse, true);
 
@@ -2974,9 +3010,7 @@ class ClientTest extends TestCase
         self::assertEquals($responseToCompare[0]['guid'], $result[0]->getGuid());
     }
 
-    /**
-     * @dataProvider exceptionClassProvider
-     */
+    #[DataProvider('exceptionClassProvider')]
     public function testGetInvoicesShouldCatchRestCliExceptions(Exception $exceptionClass)
     {
         $params = [
@@ -3005,7 +3039,8 @@ class ClientTest extends TestCase
             $params['status'],
             $params['orderId'],
             $params['limit'],
-            $params['offset']);
+            $params['offset']
+        );
     }
 
     public function testGetInvoicesShouldCatchJsonMapperException()
@@ -3036,7 +3071,8 @@ class ClientTest extends TestCase
             $params['status'],
             $params['orderId'],
             $params['limit'],
-            $params['offset']);
+            $params['offset']
+        );
     }
 
     public function testRequestInvoiceNotificationShouldReturnTrueOnSuccess()
@@ -3099,9 +3135,12 @@ class ClientTest extends TestCase
             'token' => self::MERCHANT_TOKEN,
             'forceCancel' => true
         ];
-        $invoice = json_decode(file_get_contents(__DIR__.'/jsonResponse/getInvoice.json'));
+        $invoice = json_decode(file_get_contents(__DIR__ . '/jsonResponse/getInvoice.json'));
         $invoice->isCancelled = true;
-        $restCliMock->expects(self::once())->method('delete')->with("invoices/" . self::TEST_INVOICE_ID, $params)->willReturn(json_encode($invoice));
+        $restCliMock->expects(self::once())
+            ->method('delete')
+            ->with("invoices/" . self::TEST_INVOICE_ID, $params)
+            ->willReturn(json_encode($invoice));
         $testedObject = $this->getClient($restCliMock);
 
         $result = $testedObject->cancelInvoice(self::TEST_INVOICE_ID, $params['forceCancel']);
@@ -3109,9 +3148,7 @@ class ClientTest extends TestCase
         self::assertTrue($result->getIsCancelled());
     }
 
-    /**
-     * @dataProvider exceptionClassProvider
-     */
+    #[DataProvider('exceptionClassProvider')]
     public function testCancelInvoiceShouldCatchRestCliExceptions(Exception $exceptionClass)
     {
         $restCliMock = $this->getRestCliMock();
@@ -3151,7 +3188,7 @@ class ClientTest extends TestCase
             'token' => self::MERCHANT_TOKEN,
             'forceCancel' => true
         ];
-        $invoice = json_decode(file_get_contents(__DIR__.'/jsonResponse/getInvoice.json'));
+        $invoice = json_decode(file_get_contents(__DIR__ . '/jsonResponse/getInvoice.json'));
         $invoice->isCancelled = true;
         $restCliMock
             ->expects(self::once())
@@ -3167,9 +3204,7 @@ class ClientTest extends TestCase
         self::assertTrue($result->getIsCancelled());
     }
 
-    /**
-     * @dataProvider exceptionClassProvider
-     */
+    #[DataProvider('exceptionClassProvider')]
     public function testCancelInvoiceByGuidShouldCatchRestCliExceptions(Exception $exceptionClass)
     {
         $restCliMock = $this->getRestCliMock();
@@ -3226,9 +3261,7 @@ class ClientTest extends TestCase
         self::assertEquals('complete', $result->getStatus());
     }
 
-    /**
-     * @dataProvider exceptionClassProvider
-     */
+    #[DataProvider('exceptionClassProvider')]
     public function testPayInvoiceShouldCatchRestCliExceptions(Exception $exceptionClass)
     {
         $params['status'] = 'confirmed';
@@ -3264,7 +3297,10 @@ class ClientTest extends TestCase
      */
     public function testCreateInvoice()
     {
-        $invoiceArray = json_decode(file_get_contents(__DIR__.'/jsonResponse/createInvoiceResponse.json'), true);
+        $invoiceArray = json_decode(file_get_contents(__DIR__ . '/jsonResponse/createInvoiceResponse.json'), true);
+        /**
+         * @var Invoice|MockObject
+         */
         $invoiceMock = $this->createMock(Invoice::class);
         $invoiceMock->expects(self::once())->method('toArray')->willReturn($invoiceArray);
 
@@ -3273,7 +3309,7 @@ class ClientTest extends TestCase
             ->expects(self::once())
             ->method('post')
             ->with('invoices', $invoiceArray, true)
-            ->willReturn(file_get_contents(__DIR__.'/jsonResponse/createInvoiceResponse.json'));
+            ->willReturn(file_get_contents(__DIR__ . '/jsonResponse/createInvoiceResponse.json'));
 
         $testedObject = $this->getClient($restCliMock);
         $result = $testedObject->createInvoice($invoiceMock);
@@ -3282,12 +3318,13 @@ class ClientTest extends TestCase
         self::assertEquals($invoiceArray['guid'], $result->getGuid());
     }
 
-    /**
-     * @dataProvider exceptionClassProvider
-     */
+    #[DataProvider('exceptionClassProvider')]
     public function testCreateInvoiceShouldCatchRestCliExceptions(Exception $exceptionClass)
     {
-        $invoiceArray = json_decode(file_get_contents(__DIR__.'/jsonResponse/getInvoice.json'), true);
+        $invoiceArray = json_decode(file_get_contents(__DIR__ . '/jsonResponse/getInvoice.json'), true);
+        /**
+         * @var Invoice|MockObject
+         */
         $invoiceMock = $this->createMock(Invoice::class);
         $invoiceMock->expects(self::once())->method('toArray')->willReturn($invoiceArray);
 
@@ -3303,7 +3340,10 @@ class ClientTest extends TestCase
 
     public function testCreateInvoiceShouldCatchJsonMapperException()
     {
-        $invoiceArray = json_decode(file_get_contents(__DIR__.'/jsonResponse/getInvoice.json'), true);
+        $invoiceArray = json_decode(file_get_contents(__DIR__ . '/jsonResponse/getInvoice.json'), true);
+        /**
+         * @var Invoice|MockObject
+         */
         $invoiceMock = $this->createMock(Invoice::class);
         $invoiceMock->expects(self::once())->method('toArray')->willReturn($invoiceArray);
 
@@ -3331,7 +3371,7 @@ class ClientTest extends TestCase
         $restCliMock
             ->expects(self::once())
             ->method('update')
-            ->with('invoices/'. self::TEST_INVOICE_ID, $params)
+            ->with('invoices/' . self::TEST_INVOICE_ID, $params)
             ->willThrowException($this->getBitPayApiException());
 
         $this->expectException(BitPayApiException::class);
@@ -3359,7 +3399,7 @@ class ClientTest extends TestCase
         $restCliMock
             ->expects(self::once())
             ->method('update')
-            ->with('invoices/'. self::TEST_INVOICE_ID, $params)
+            ->with('invoices/' . self::TEST_INVOICE_ID, $params)
             ->willReturn('corruptJson');
 
         $this->expectException(BitPayGenericException::class);
@@ -3423,12 +3463,12 @@ class ClientTest extends TestCase
             'autoVerify' => false
         ];
 
-        $successResponse = file_get_contents(__DIR__.'/jsonResponse/getInvoice.json');
+        $successResponse = file_get_contents(__DIR__ . '/jsonResponse/getInvoice.json');
         $restCliMock = $this->getRestCliMock();
         $restCliMock
             ->expects(self::once())
             ->method('update')
-            ->with('invoices/'. self::TEST_INVOICE_ID, $params)
+            ->with('invoices/' . self::TEST_INVOICE_ID, $params)
             ->willReturn($successResponse);
 
         $testedObject = $this->getClient($restCliMock);
@@ -3453,7 +3493,7 @@ class ClientTest extends TestCase
             ->expects(self::once())
             ->method('get')
             ->with("supportedWallets/", null, false)
-            ->willReturn(file_get_contents(__DIR__.'/jsonResponse/getSupportedWalletsResponse.json'));
+            ->willReturn(file_get_contents(__DIR__ . '/jsonResponse/getSupportedWalletsResponse.json'));
 
         $client = $this->getClient($restCliMock);
 
@@ -3523,6 +3563,9 @@ class ClientTest extends TestCase
     {
         $testToken = self::MERCHANT_TOKEN;
 
+        /**
+         * @var Tokens|MockObject
+         */
         $tokens = $this->getMockBuilder(Tokens::class)->getMock();
         $tokens->setMerchantToken($testToken);
         $tokens->method('getTokenByFacade')->willReturn($testToken);
@@ -3532,13 +3575,19 @@ class ClientTest extends TestCase
 
     private function getTestedClassInstance(): Client
     {
+        /**
+         * @var RESTcli|MockObject
+         */
         $restCli = $this->getMockBuilder(RESTcli::class)->disableOriginalConstructor()->getMock();
+        /**
+         * @var Tokens|MockObject
+         */
         $tokens = $this->getMockBuilder(Tokens::class)->disableOriginalConstructor()->getMock();
 
         return new Client($restCli, $tokens);
     }
 
-    private function getRestCliMock()
+    private function getRestCliMock(): RestCli|MockObject
     {
         return $this->getMockBuilder(RESTcli::class)->disableOriginalConstructor()->getMock();
     }
@@ -3597,7 +3646,7 @@ class ClientTest extends TestCase
     /**
      * @return BitPayApiException
      */
-    private function getBitPayApiException(): BitPayApiException
+    private function getBitPayApiException(): BitPayApiException|MockObject
     {
         return $this->getMockBuilder(BitPayApiException::class)->disableOriginalConstructor()->getMock();
     }

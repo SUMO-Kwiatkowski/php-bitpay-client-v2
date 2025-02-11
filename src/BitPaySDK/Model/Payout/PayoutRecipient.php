@@ -33,7 +33,7 @@ class PayoutRecipient
      * @param string|null $notificationURL string URL to which BitPay sends webhook notifications to inform
      *                         the merchant about the status of a given recipient. HTTPS is mandatory (Optional).
      */
-    public function __construct(string $email = null, string $label = null, string $notificationURL = null)
+    public function __construct(?string $email = null, ?string $label = null, ?string $notificationURL = null)
     {
         $this->email = $email;
         $this->label = $label;

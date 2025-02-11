@@ -7,124 +7,127 @@ use PHPUnit\Framework\TestCase;
 
 class PayoutRecipientTest extends TestCase
 {
-  public function testInstanceOf()
-  {
-    $payoutRecipient = $this->createClassObject();
-    self::assertInstanceOf(PayoutRecipient::class, $payoutRecipient);
-  }
+    public function testInstanceOf()
+    {
+        $payoutRecipient = $this->createClassObject();
+        self::assertInstanceOf(PayoutRecipient::class, $payoutRecipient);
+    }
 
-  public function testGetEmail()
-  {
-    $expectedEmail = 'john@doe.com';
-    
-    $payoutRecipient = $this->createClassObject();
-    $payoutRecipient->setEmail($expectedEmail);
+    public function testGetEmail()
+    {
+        $expectedEmail = 'john@doe.com';
 
-    self::assertEquals($expectedEmail, $payoutRecipient->getEmail());
-  }
+        $payoutRecipient = $this->createClassObject();
+        $payoutRecipient->setEmail($expectedEmail);
 
-  public function testGetLabel()
-  {
-    $expectedLabel = 'My Label';
-    
-    $payoutRecipient = $this->createClassObject();
-    $payoutRecipient->setLabel($expectedLabel);
+        self::assertEquals($expectedEmail, $payoutRecipient->getEmail());
+    }
 
-    self::assertEquals($expectedLabel, $payoutRecipient->getLabel());
-  }
+    public function testGetLabel()
+    {
+        $expectedLabel = 'My Label';
 
-  public function testGetNotificationURL()
-  {
-    $expectedNotificationURL = 'https://www.example.com';
-    
-    $payoutRecipient = $this->createClassObject();
-    $payoutRecipient->setNotificationURL($expectedNotificationURL);
+        $payoutRecipient = $this->createClassObject();
+        $payoutRecipient->setLabel($expectedLabel);
 
-    self::assertEquals($expectedNotificationURL, $payoutRecipient->getNotificationURL());
-  }
+        self::assertEquals($expectedLabel, $payoutRecipient->getLabel());
+    }
 
-  public function testGetStatus()
-  {
-    $expectedStatus = 'success';
-    
-    $payoutRecipient = $this->createClassObject();
-    $payoutRecipient->setStatus($expectedStatus);
+    public function testGetNotificationURL()
+    {
+        $expectedNotificationURL = 'https://www.example.com';
 
-    self::assertEquals($expectedStatus, $payoutRecipient->getStatus());
-  }
+        $payoutRecipient = $this->createClassObject();
+        $payoutRecipient->setNotificationURL($expectedNotificationURL);
 
-  public function testGetId()
-  {
-    $expectedId = 'abcd123';
-    
-    $payoutRecipient = $this->createClassObject();
-    $payoutRecipient->setId($expectedId);
+        self::assertEquals($expectedNotificationURL, $payoutRecipient->getNotificationURL());
+    }
 
-    self::assertEquals($expectedId, $payoutRecipient->getId());
-  }
+    public function testGetStatus()
+    {
+        $expectedStatus = 'success';
 
-  public function testGetShopperId()
-  {
-    $expectedShopperId = 'efgh456';
-    
-    $payoutRecipient = $this->createClassObject();
-    $payoutRecipient->setShopperId($expectedShopperId);
+        $payoutRecipient = $this->createClassObject();
+        $payoutRecipient->setStatus($expectedStatus);
 
-    self::assertEquals($expectedShopperId, $payoutRecipient->getShopperId());
-  }
+        self::assertEquals($expectedStatus, $payoutRecipient->getStatus());
+    }
 
-  public function testGetToken()
-  {
-    $expectedToken = '6RZSTPtnzEaroAe2X4YijenRiqteRDNvzbT8NjtcHjUVd9FUFwa7dsX8RFgRDDC5SL';
-    
-    $payoutRecipient = $this->createClassObject();
-    $payoutRecipient->setToken($expectedToken);
+    public function testGetId()
+    {
+        $expectedId = 'abcd123';
 
-    self::assertEquals($expectedToken, $payoutRecipient->getToken());
-  }
+        $payoutRecipient = $this->createClassObject();
+        $payoutRecipient->setId($expectedId);
 
-  public function testToArray()
-  {
-    $payoutRecipient = $this->createClassObject();
-    $payoutRecipient->setEmail('john@doe.com');
-    $payoutRecipient->setLabel('My Label');
-    $payoutRecipient->setNotificationURL('https://www.example.com');
-    $payoutRecipient->setStatus('success');
-    $payoutRecipient->setId('abcd123');
-    $payoutRecipient->setShopperId('efgh456');
-    $payoutRecipient->setToken('6RZSTPtnzEaroAe2X4YijenRiqteRDNvzbT8NjtcHjUVd9FUFwa7dsX8RFgRDDC5SL');
-    $payoutRecipientArray = $payoutRecipient->toArray();
+        self::assertEquals($expectedId, $payoutRecipient->getId());
+    }
 
-    self::assertNotNull($payoutRecipientArray);
-    self::assertIsArray($payoutRecipientArray);
+    public function testGetShopperId()
+    {
+        $expectedShopperId = 'efgh456';
 
-    self::assertArrayHasKey('email', $payoutRecipientArray);
-    self::assertArrayHasKey('label', $payoutRecipientArray);
-    self::assertArrayHasKey('notificationURL', $payoutRecipientArray);
-    self::assertArrayHasKey('status', $payoutRecipientArray);
-    self::assertArrayHasKey('id', $payoutRecipientArray);
-    self::assertArrayHasKey('shopperId', $payoutRecipientArray);
-    self::assertArrayHasKey('token', $payoutRecipientArray);
+        $payoutRecipient = $this->createClassObject();
+        $payoutRecipient->setShopperId($expectedShopperId);
 
-    self::assertEquals('john@doe.com', $payoutRecipientArray['email']);
-    self::assertEquals('My Label', $payoutRecipientArray['label']);
-    self::assertEquals('https://www.example.com', $payoutRecipientArray['notificationURL']);
-    self::assertEquals('success', $payoutRecipientArray['status']);
-    self::assertEquals('abcd123', $payoutRecipientArray['id']);
-    self::assertEquals('efgh456', $payoutRecipientArray['shopperId']);
-    self::assertEquals('6RZSTPtnzEaroAe2X4YijenRiqteRDNvzbT8NjtcHjUVd9FUFwa7dsX8RFgRDDC5SL', $payoutRecipientArray['token']);
-  }
+        self::assertEquals($expectedShopperId, $payoutRecipient->getShopperId());
+    }
 
-  public function testToArrayEmptyKey()
-  {
-    $payoutRecipient = $this->createClassObject();
-    $payoutRecipientArray = $payoutRecipient->toArray();
+    public function testGetToken()
+    {
+        $expectedToken = '6RZSTPtnzEaroAe2X4YijenRiqteRDNvzbT8NjtcHjUVd9FUFwa7dsX8RFgRDDC5SL';
 
-    self::assertArrayNotHasKey('email', $payoutRecipientArray);
-  }
+        $payoutRecipient = $this->createClassObject();
+        $payoutRecipient->setToken($expectedToken);
 
-  private function createClassObject(): PayoutRecipient
-  {
-    return new PayoutRecipient();
-  }
+        self::assertEquals($expectedToken, $payoutRecipient->getToken());
+    }
+
+    public function testToArray()
+    {
+        $payoutRecipient = $this->createClassObject();
+        $payoutRecipient->setEmail('john@doe.com');
+        $payoutRecipient->setLabel('My Label');
+        $payoutRecipient->setNotificationURL('https://www.example.com');
+        $payoutRecipient->setStatus('success');
+        $payoutRecipient->setId('abcd123');
+        $payoutRecipient->setShopperId('efgh456');
+        $payoutRecipient->setToken('6RZSTPtnzEaroAe2X4YijenRiqteRDNvzbT8NjtcHjUVd9FUFwa7dsX8RFgRDDC5SL');
+        $payoutRecipientArray = $payoutRecipient->toArray();
+
+        self::assertNotNull($payoutRecipientArray);
+        self::assertIsArray($payoutRecipientArray);
+
+        self::assertArrayHasKey('email', $payoutRecipientArray);
+        self::assertArrayHasKey('label', $payoutRecipientArray);
+        self::assertArrayHasKey('notificationURL', $payoutRecipientArray);
+        self::assertArrayHasKey('status', $payoutRecipientArray);
+        self::assertArrayHasKey('id', $payoutRecipientArray);
+        self::assertArrayHasKey('shopperId', $payoutRecipientArray);
+        self::assertArrayHasKey('token', $payoutRecipientArray);
+
+        self::assertEquals('john@doe.com', $payoutRecipientArray['email']);
+        self::assertEquals('My Label', $payoutRecipientArray['label']);
+        self::assertEquals('https://www.example.com', $payoutRecipientArray['notificationURL']);
+        self::assertEquals('success', $payoutRecipientArray['status']);
+        self::assertEquals('abcd123', $payoutRecipientArray['id']);
+        self::assertEquals('efgh456', $payoutRecipientArray['shopperId']);
+        self::assertEquals(
+            '6RZSTPtnzEaroAe2X4YijenRiqteRDNvzbT8NjtcHjUVd9FUFwa7dsX8RFgRDDC5SL',
+            $payoutRecipientArray['token']
+        );
+    }
+
+    public function testToArrayEmptyKey()
+    {
+        $payoutRecipient = $this->createClassObject();
+        $payoutRecipientArray = $payoutRecipient->toArray();
+
+        self::assertArrayNotHasKey('email', $payoutRecipientArray);
+    }
+
+    private function createClassObject(): PayoutRecipient
+    {
+        return new PayoutRecipient();
+    }
 }

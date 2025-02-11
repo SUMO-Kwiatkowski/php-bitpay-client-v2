@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace BitPaySDK\Model\Settlement;
 
+use BitPaySDK\Exceptions\BitPayExceptionProvider;
+use BitPaySDK\Exceptions\BitPayGenericException;
+
 /**
  * Settlement data object.
  *
@@ -344,13 +347,15 @@ class Settlement
      * from this settlement. Each withholding is a JSON object containing a code, amount and description field.
      *
      * @param WithHoldings[] $withHoldings
-     * @throws SettlementException
+     * @throws BitPayGenericException
      */
     public function setWithHoldings(array $withHoldings): void
     {
         foreach ($withHoldings as $withHolding) {
             if (!$withHolding instanceof WithHoldings) {
-                throw new SettlementException('Array should contains only WithHoldings objects');
+                BitPayExceptionProvider::throwGenericExceptionWithMessage(
+                    'Array should contains only WithHoldings objects'
+                );
             }
         }
 
@@ -421,13 +426,15 @@ class Settlement
      * A description of all ledger codes can be found
      *
      * @param SettlementLedgerEntry[] $ledgerEntries
-     * @throws SettlementException
+     * @throws BitPayGenericException
      */
     public function setLedgerEntries(array $ledgerEntries): void
     {
         foreach ($ledgerEntries as $ledgerEntry) {
             if (!$ledgerEntry instanceof SettlementLedgerEntry) {
-                throw new SettlementException('Array should contains only SettlementLedgerEntry objects');
+                BitPayExceptionProvider::throwGenericExceptionWithMessage(
+                    'Array should contains only SettlementLedgerEntry objects'
+                );
             }
         }
         $this->ledgerEntries = $ledgerEntries;

@@ -73,7 +73,7 @@ class BillTest extends TestCase
 
         $bill = $this->createClassObject();
         $bill->setName($expectedName);
-        self::assertEquals($expectedName,  $bill->getName());
+        self::assertEquals($expectedName, $bill->getName());
     }
 
     public function testGetAddress1()

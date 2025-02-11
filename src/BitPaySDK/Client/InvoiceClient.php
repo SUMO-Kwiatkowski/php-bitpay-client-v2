@@ -210,10 +210,10 @@ class InvoiceClient
     public function getInvoices(
         string $dateStart,
         string $dateEnd,
-        string $status = null,
-        string $orderId = null,
-        int $limit = null,
-        int $offset = null
+        ?string $status = null,
+        ?string $orderId = null,
+        ?int $limit = null,
+        ?int $offset = null
     ): array {
         $params = [];
         $params["token"] = $this->tokenCache->getTokenByFacade(Facade::MERCHANT);

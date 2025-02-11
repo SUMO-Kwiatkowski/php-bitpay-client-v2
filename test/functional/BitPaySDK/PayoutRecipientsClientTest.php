@@ -20,7 +20,8 @@ class PayoutRecipientsClientTest extends AbstractClientTestCase
             new PayoutRecipient(
                 "test@emaill1.com",
                 "recipient1",
-                "https://yournotiticationURL.com/b3sarz5bg0wx01eq1bv9785amx")
+                "https://yournotiticationURL.com/b3sarz5bg0wx01eq1bv9785amx"
+            )
         ];
 
         $recipients = new PayoutRecipients($recipientsList);
@@ -42,7 +43,8 @@ class PayoutRecipientsClientTest extends AbstractClientTestCase
             new PayoutRecipient(
                 "test@emaill1.com",
                 "recipient1",
-                "https://yournotiticationURL.com/b3sarz5bg0wx01eq1bv9785amx")
+                "https://yournotiticationURL.com/b3sarz5bg0wx01eq1bv9785amx"
+            )
         ];
 
         $recipients = new PayoutRecipients($recipientsList);
@@ -82,7 +84,8 @@ class PayoutRecipientsClientTest extends AbstractClientTestCase
             new PayoutRecipient(
                 "test@emaill1.com",
                 "recipient1",
-                "https://yournotiticationURL.com/b3sarz5bg0wx01eq1bv9785amx")
+                "https://yournotiticationURL.com/b3sarz5bg0wx01eq1bv9785amx"
+            )
         ];
 
         $recipients = new PayoutRecipients($recipientsList);
@@ -104,7 +107,8 @@ class PayoutRecipientsClientTest extends AbstractClientTestCase
             new PayoutRecipient(
                 "test@emaill1.com",
                 "recipient1",
-                "https://yournotiticationURL.com/b3sarz5bg0wx01eq1bv9785amx")
+                "https://yournotiticationURL.com/b3sarz5bg0wx01eq1bv9785amx"
+            )
         ];
 
         $recipients = new PayoutRecipients($recipientsList);
@@ -122,7 +126,8 @@ class PayoutRecipientsClientTest extends AbstractClientTestCase
             new PayoutRecipient(
                 "test@emaill1.com",
                 "recipient1",
-                "https://yournotiticationURL.com/b3sarz5bg0wx01eq1bv9785amx")
+                "https://yournotiticationURL.com/b3sarz5bg0wx01eq1bv9785amx"
+            )
         ];
 
         $recipients = new PayoutRecipients($recipientsList);

@@ -18,7 +18,7 @@ class LoggerTest extends TestCase
 
     public function testChangeDefaultLogger(): void
     {
-        $customLogger = new class() implements BitPayLogger {
+        $customLogger = new class () implements BitPayLogger {
             public function logRequest(string $method, string $endpoint, ?string $json): void
             {
             }

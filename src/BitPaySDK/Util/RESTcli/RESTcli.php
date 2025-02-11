@@ -188,7 +188,7 @@ class RESTcli
      * @throws BitPayApiException
      * @throws BitPayGenericException
      */
-    public function get($uri, array $parameters = null, bool $signatureRequired = true): string
+    public function get($uri, ?array $parameters = null, bool $signatureRequired = true): string
     {
         try {
             $fullURL = $this->baseUrl . $uri;
@@ -251,7 +251,7 @@ class RESTcli
      * @throws BitPayApiException
      * @throws BitPayGenericException
      */
-    public function delete($uri, array $parameters = null): string
+    public function delete($uri, ?array $parameters = null): string
     {
         try {
             $fullURL = $this->baseUrl . $uri;

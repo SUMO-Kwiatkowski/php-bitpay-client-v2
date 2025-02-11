@@ -121,7 +121,7 @@ class PayoutRecipientsClient
      * @throws BitPayApiException
      * @throws BitPayGenericException
      */
-    public function getPayoutRecipients(string $status = null, int $limit = null, int $offset = null): array
+    public function getPayoutRecipients(?string $status = null, ?int $limit = null, ?int $offset = null): array
     {
         $params = [];
         $params["token"] = $this->tokenCache->getTokenByFacade(Facade::PAYOUT);

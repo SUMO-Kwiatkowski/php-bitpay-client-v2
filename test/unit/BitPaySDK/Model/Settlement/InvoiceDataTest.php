@@ -4,6 +4,7 @@ namespace BitPaySDK\Test\Model\Settlement;
 
 use BitPaySDK\Model\Settlement\InvoiceData;
 use BitPaySDK\Model\Settlement\RefundInfo;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class InvoiceDataTest extends TestCase
@@ -79,6 +80,9 @@ class InvoiceDataTest extends TestCase
 
     public function testGetRefundInfo()
     {
+        /**
+         * @var RefundInfo|MockObject
+         */
         $expectedRefundInfo = $this->getMockBuilder(RefundInfo::class)->getMock();
 
         $invoiceData = $this->createClassObject();
@@ -125,6 +129,10 @@ class InvoiceDataTest extends TestCase
         $invoiceData->setCurrency('BTC');
         $invoiceData->setTransactionCurrency('BTC');
         $invoiceData->setPayoutPercentage(['USD' => 15.12]);
-        $invoiceData->setRefundInfo($this->getMockBuilder(RefundInfo::class)->getMock());
+        /**
+         * @var RefundInfo|MockObject
+         */
+        $refundInfo = $this->getMockBuilder(RefundInfo::class)->getMock();
+        $invoiceData->setRefundInfo($refundInfo);
     }
 }

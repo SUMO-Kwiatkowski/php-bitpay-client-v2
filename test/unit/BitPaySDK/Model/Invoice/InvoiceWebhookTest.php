@@ -82,7 +82,7 @@ class InvoiceWebhookTest extends TestCase
         self::assertEquals($expected, $testedClass->getOrderId());
     }
 
-    public function testManipulate_paymentSubtotals(): void
+    public function testManipulatePaymentSubtotals(): void
     {
         $testedClass = $this->getTestedClass();
         $expected = [];

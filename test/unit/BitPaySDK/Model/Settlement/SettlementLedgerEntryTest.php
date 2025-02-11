@@ -4,6 +4,7 @@ namespace BitPaySDK\Test\Model\Settlement;
 
 use BitPaySDK\Model\Settlement\InvoiceData;
 use BitPaySDK\Model\Settlement\SettlementLedgerEntry;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class SettlementLedgerEntryTest extends TestCase
@@ -70,6 +71,9 @@ class SettlementLedgerEntryTest extends TestCase
 
     public function testGetInvoiceData()
     {
+        /**
+         * @var InvoiceData|MockObject
+         */
         $expectedInvoiceData = $this->getMockBuilder(InvoiceData::class)->getMock();
 
         $settlementLedgerEntry = $this->createClassObject();
@@ -115,6 +119,10 @@ class SettlementLedgerEntryTest extends TestCase
         $settlementLedgerEntry->setTimestamp('2022-01-11 01:01:01');
         $settlementLedgerEntry->setDescription('Description');
         $settlementLedgerEntry->setReference('Reference');
-        $settlementLedgerEntry->setInvoiceData($this->getMockBuilder(InvoiceData::class)->getMock());
+        /**
+         * @var InvoiceData|MockObject
+         */
+        $invoiceData = $this->getMockBuilder(InvoiceData::class)->getMock();
+        $settlementLedgerEntry->setInvoiceData($invoiceData);
     }
 }

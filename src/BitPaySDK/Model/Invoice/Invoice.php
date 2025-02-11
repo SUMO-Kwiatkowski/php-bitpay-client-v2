@@ -93,7 +93,7 @@ class Invoice
      * @param float|null $price float The amount for which the invoice will be created.
      * @param string|null $currency string three digit currency type used to compute the invoice bitcoin amount.
      */
-    public function __construct(float $price = null, string $currency = null)
+    public function __construct(?float $price = null, ?string $currency = null)
     {
         $this->price = $price;
         $this->currency = $currency;

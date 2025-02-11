@@ -72,9 +72,9 @@ class SettlementClient
         string $currency,
         string $dateStart,
         string $dateEnd,
-        string $status = null,
-        int $limit = null,
-        int $offset = null
+        ?string $status = null,
+        ?int $limit = null,
+        ?int $offset = null
     ): array {
         $status = $status ?? "";
         $limit = $limit ?? 100;

@@ -17,6 +17,8 @@ abstract class AbstractClientTestCase extends TestCase
      */
     public function setUp(): void
     {
-        $this->client = Client::createWithFile(Config::FUNCTIONAL_TEST_PATH . DIRECTORY_SEPARATOR . Config::BITPAY_CONFIG_FILE);
+        $this->client = Client::createWithFile(
+            Config::FUNCTIONAL_TEST_PATH . DIRECTORY_SEPARATOR . Config::BITPAY_CONFIG_FILE
+        );
     }
 }

@@ -50,10 +50,10 @@ class Bill
      * @param array|null $items array The list of items to add to this bill.
      */
     public function __construct(
-        string $number = null,
-        string $currency = null,
-        string $email = null,
-        array $items = null
+        ?string $number = null,
+        ?string $currency = null,
+        ?string $email = null,
+        ?array $items = null
     ) {
         $this->number = $number;
         $this->currency = $currency;

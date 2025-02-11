@@ -3,7 +3,7 @@ name: Documentation
 on:
   push:
     branches:
-      - '*.*.x'
+      - "*.*.x"
 
 concurrency:
   group: documentation
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run phpdoc
         run: |
           docker run --rm -v $(pwd):/data phpdoc/phpdoc:3 -d ./src -t ./docs

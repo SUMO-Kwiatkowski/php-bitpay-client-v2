@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Copyright (c) 2019 BitPay
  **/
+
 declare(strict_types=1);
 
 namespace BitPaySDK\Functional;
@@ -76,7 +78,8 @@ class PayoutClientTest extends AbstractClientTestCase
             new PayoutRecipient(
                 $email,
                 "recipient1",
-                "https://yournotiticationURL.com/b3sarz5bg0wx01eq1bv9785amx")
+                "https://yournotiticationURL.com/b3sarz5bg0wx01eq1bv9785amx"
+            )
         ];
 
         $recipients = new PayoutRecipients($recipientsList);
