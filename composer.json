@@ -19,7 +19,7 @@
     "guzzlehttp/guzzle": "^7.0",
     "symfony/yaml": "^5.0 || ^6.0 || ^7.0",
     "netresearch/jsonmapper": "^5.0",
-    "symfony/console": "^4.4 || ^5.4 || ^6.0"
+    "symfony/console": "^4.4 || ^5.4 || ^6.0 || ^7.0"
   },
   "authors": [
     {
