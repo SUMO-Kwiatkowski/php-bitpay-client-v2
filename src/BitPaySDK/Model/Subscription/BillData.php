@@ -43,17 +43,17 @@ class BillData
      * @param string|null $number Recurring bill identifier, specified by merchant
      * @param string|null $currency The three digit currency code used to compute the billData's amount.
      * @param string|null $email The email address of the receiver for this billData.
-     * @param string|\DateTime|null $dueDate Date and time at which a bill is due, ISO-8601 format yyyy-mm-ddThh:mm:ssZ (UTC).
+     * @param string|\DateTime|null $dueDate Date and time at which a bill is due, ISO-8601 format yyyy-mm-ddThh:mm:ssZ
+     *                                       (UTC).
      * @param array|null $items The list of line items to add to this billData.
      */
     public function __construct(
-        ?string               $number = null,
-        ?string               $currency = null,
-        ?string               $email = null,
+        ?string $number = null,
+        ?string $currency = null,
+        ?string $email = null,
         string|\DateTime|null $dueDate = null,
-        ?array                $items = null
-    )
-    {
+        ?array $items = null
+    ) {
         $this->number = $number;
         $this->currency = $currency ?: Currency::USD;
         $this->email = $email;
@@ -73,7 +73,8 @@ class BillData
     /**
      * Gets billData emailBill
      *
-     * If set to `true`, BitPay will automatically issue recurring bills to the `email` address provided once the status of the subscription is set to `active`.
+     * If set to `true`, BitPay will automatically issue recurring bills to the `email` address provided once the
+     * status of the subscription is set to `active`.
      *
      * @return bool|null
      */
@@ -85,7 +86,8 @@ class BillData
     /**
      * Sets billData's emailBill
      *
-     * If set to `true`, BitPay will automatically issue recurring bills to the `email` address provided once the status of the subscription is set to `active`.
+     * If set to `true`, BitPay will automatically issue recurring bills to the `email` address provided once the
+     * status of the subscription is set to `active`.
      *
      * @param bool|null $emailBill
      * @return void
@@ -438,8 +440,8 @@ class BillData
      *
      * Date and time at which a billData is due, ISO-8601 format yyyy-mm-ddThh:mm:ssZ. (UTC)
      *
-     * @see Env::BITPAY_DATETIME_FORMAT
      * @return string|null the number
+     * @see Env::BITPAY_DATETIME_FORMAT
      */
     public function getDueDate(): ?string
     {
@@ -451,8 +453,8 @@ class BillData
      *
      * Date and time at which a billData is due, ISO-8601 format yyyy-mm-ddThh:mm:ssZ. (UTC)
      *
-     * @see Env::BITPAY_DATETIME_FORMAT
      * @param string $dueDate Date and time at which a billData is due
+     * @see Env::BITPAY_DATETIME_FORMAT
      */
     public function setDueDate(string $dueDate): void
     {

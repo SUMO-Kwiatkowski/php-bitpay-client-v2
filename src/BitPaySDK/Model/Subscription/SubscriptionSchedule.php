@@ -12,7 +12,9 @@
 namespace BitPaySDK\Model\Subscription;
 
 /**
- * Schedule of repeat bill due dates. Can be `weekly`, `monthly`, `quarterly`, `yearly`, or a simple cron expression specifying seconds, minutes, hours, day of month, month, and day of week. BitPay maintains the difference between the due date and the delivery date in all subsequent, automatically-generated bills.
+ * Schedule of repeat bill due dates. Can be `weekly`, `monthly`, `quarterly`, `yearly`, or a simple cron expression
+ * specifying seconds, minutes, hours, day of month, month, and day of week. BitPay maintains the difference between
+ * the due date and the delivery date in all subsequent, automatically-generated bills.
  *
  * +-------------- second (0 - 59)
  *
