@@ -54,7 +54,7 @@
     Menu
 </label>
 <aside class="phpdocumentor-column -three phpdocumentor-sidebar">
-                    <section class="phpdocumentor-sidebar__category">
+                    <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/bitpaysdk.html" class="">BitPaySDK</a>
@@ -79,7 +79,7 @@
             </ul>
 
                         </section>
-                <section class="phpdocumentor-sidebar__category">
+                <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/BitPaySDK.html" class="">BitPaySDK</a>
@@ -105,14 +105,14 @@
 
                         </section>
             
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -reports">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -indices">
         <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
@@ -146,6 +146,7 @@
 
             <p class="phpdocumentor-summary">Facades are named collections of capabilities that can be granted,
 such as the ability to create invoices or grant refunds.</p>
+
 
 
 
@@ -187,6 +188,8 @@ such as the ability to create invoices or grant refunds.</p>
 
 
 
+
+
 <h3 id="toc">
     Table of Contents
     <a href="classes/BitPaySDK-Model-Facade.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -206,7 +209,7 @@ such as the ability to create invoices or grant refunds.</p>
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="classes/BitPaySDK-Model-Facade.html#constant_MERCHANT">MERCHANT</a>
+    <a class="" href="classes/BitPaySDK-Model-Facade.html#constant_MERCHANT">MERCHANT</a>
     <span>
         &nbsp;= &quot;merchant&quot;                            </span>
 </dt>
@@ -215,14 +218,14 @@ and view actions for Invoices and Bills; ledger download,
 as well as the creation of new merchant or pos tokens associated with the account.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="classes/BitPaySDK-Model-Facade.html#constant_PAYOUT">PAYOUT</a>
+    <a class="" href="classes/BitPaySDK-Model-Facade.html#constant_PAYOUT">PAYOUT</a>
     <span>
         &nbsp;= &quot;payout&quot;                            </span>
 </dt>
 <dd>This is the facade which allows merchant to access the Payouts related resources and corresponding endpoints.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="classes/BitPaySDK-Model-Facade.html#constant_POS">POS</a>
+    <a class="" href="classes/BitPaySDK-Model-Facade.html#constant_POS">POS</a>
     <span>
         &nbsp;= &quot;pos&quot;                            </span>
 </dt>
@@ -262,6 +265,7 @@ or bills based on their id for the merchant&#039;s organization</dd>
 and view actions for Invoices and Bills; ledger download,
 as well as the creation of new merchant or pos tokens associated with the account.</p>
 
+    
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
@@ -272,6 +276,8 @@ as well as the creation of new merchant or pos tokens associated with the accoun
 
     
     
+    
+
     
 
 </article>
@@ -291,6 +297,7 @@ as well as the creation of new merchant or pos tokens associated with the accoun
 
         <p class="phpdocumentor-summary">This is the facade which allows merchant to access the Payouts related resources and corresponding endpoints.</p>
 
+    
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
@@ -303,6 +310,8 @@ as well as the creation of new merchant or pos tokens associated with the accoun
 </section>
 
     
+    
+
     
 
 </article>
@@ -323,6 +332,7 @@ as well as the creation of new merchant or pos tokens associated with the accoun
         <p class="phpdocumentor-summary">Limited to creating new invoice or bills and search specific invoices
 or bills based on their id for the merchant&#039;s organization</p>
 
+    
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
@@ -333,6 +343,8 @@ or bills based on their id for the merchant&#039;s organization</p>
 
     
     
+    
+
     
 
 </article>
@@ -375,6 +387,8 @@ or bills based on their id for the merchant&#039;s organization</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
@@ -450,9 +464,9 @@ or bills based on their id for the merchant&#039;s organization</p>
                             <li class="phpdocumentor-on-this-page-section__title">Constants</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li><a href="classes/BitPaySDK-Model-Facade.html#constant_MERCHANT">MERCHANT</a></li>
-                                                    <li><a href="classes/BitPaySDK-Model-Facade.html#constant_PAYOUT">PAYOUT</a></li>
-                                                    <li><a href="classes/BitPaySDK-Model-Facade.html#constant_POS">POS</a></li>
+                                                    <li class=""><a href="classes/BitPaySDK-Model-Facade.html#constant_MERCHANT">MERCHANT</a></li>
+                                                    <li class=""><a href="classes/BitPaySDK-Model-Facade.html#constant_PAYOUT">PAYOUT</a></li>
+                                                    <li class=""><a href="classes/BitPaySDK-Model-Facade.html#constant_POS">POS</a></li>
                                             </ul>
                 </li>
                     </ul>
