@@ -34,6 +34,17 @@ class SettlementsClientTest extends AbstractClientTestCase
 
         $settlements = $this->client->getSettlements($currency, $dateStart, $dateEnd, $status);
 
+        // Skip test if no settlements exist
+        if (empty($settlements)) {
+            error_log(PHP_EOL . 'No settlements found in test account. ' .
+                'Skipping test. To test this functionality, ensure your test account has processed transactions.');
+            $this->markTestSkipped(
+                'No settlements found in test account. ' .
+                    'To test this functionality, ensure your test account has processed transactions.'
+            );
+            return;
+        }
+
         $settlement = $this->client->getSettlement($settlements[0]->getId());
 
         self::assertNotNull($settlement);
@@ -50,12 +61,25 @@ class SettlementsClientTest extends AbstractClientTestCase
         $currency = 'USD';
 
         $settlements = $this->client->getSettlements($currency, $dateStart, $dateEnd, $status);
-        $settlement = $this->client->getSettlement($settlements[0]->getId());
-        $settlement = $this->client->getSettlementReconciliationReport($settlement);
 
-        self::assertEquals('processing', $settlement->getStatus());
-        self::assertNotNull($settlement);
-        self::assertEquals('USD', $settlement->getCurrency());
-        self::assertEquals($status, $settlement->getStatus());
+        if (empty($settlements)) {
+            error_log( PHP_EOL . 'No settlements found in test account. ' .
+                'Skipping test. To test this functionality, ensure your test account has processed transactions.
+            ');
+            $this->markTestSkipped(
+                'No settlements found in test account. ' .
+                    'To test this functionality, ensure your test account has processed transactions.'
+            );
+            return;
+        }
+
+        $settlement = $this->client->getSettlement($settlements[0]->getId());
+        $settlementId = $settlement->getId();
+        $token = $settlement->getToken();
+        $reconciliationReport = $this->client->getSettlementReconciliationReport($settlementId, $token);
+
+        self::assertNotNull($reconciliationReport);
+        self::assertEquals($currency, $reconciliationReport->getCurrency());
+        self::assertEquals($status, $reconciliationReport->getStatus());
     }
 }

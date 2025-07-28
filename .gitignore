@@ -13,3 +13,7 @@ composer.phar
 test/unit/_html
 
 PrivateKey.key
+BitPay.config.json
+**/BitPay.config.json
+BitPay.config.yml
+**/BitPay.config.yml
