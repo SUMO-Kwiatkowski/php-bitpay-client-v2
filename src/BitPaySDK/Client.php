@@ -578,7 +578,7 @@ class Client
      *
      * @see https://developer.bitpay.com/reference/retrieve-bills-by-status Retrieve Bills by Status
      *
-     * @param $status string|null The status to filter the bills.
+     * @param string|null $status The status to filter the bills.
      * @return Bill[]
      * @throws BitPayApiException
      * @throws BitPayGenericException
@@ -649,7 +649,7 @@ class Client
      *
      * @see https://developer.bitpay.com/reference/retrieve-a-subscription Retrieve a Subscription
      *
-     * @param $subscriptionId string The ID of the subscription to retrieve.
+     * @param string $subscriptionId The ID of the subscription to retrieve.
      * @return Subscription
      * @throws BitPayApiException
      * @throws BitPayGenericException
@@ -666,7 +666,7 @@ class Client
      *
      * @see https://developer.bitpay.com/reference/retrieve-subscriptions-by-status Retrieve Subscriptions by Status
      *
-     * @param $status string|null The status on which to filter the subscriptions.
+     * @param string|null $status The status on which to filter the subscriptions.
      * @return Subscription[] Filtered list of Subscription objects
      * @throws BitPayApiException
      * @throws BitPayGenericException

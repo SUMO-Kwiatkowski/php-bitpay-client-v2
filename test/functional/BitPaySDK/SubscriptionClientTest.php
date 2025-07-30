@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace BitPaySDK\Functional;
 
-use BitPaySDK\Model\Subscription\Item;
+use BitPaySDK\Model\Bill\Bill;
+use BitPaySDK\Model\Bill\Item;
 use BitPaySDK\Model\Currency;
-use BitPaySDK\Model\Subscription\BillData;
 use BitPaySDK\Model\Subscription\Subscription;
 use BitPaySDK\Model\Subscription\SubscriptionSchedule;
 use BitPaySDK\Model\Subscription\SubscriptionStatus;
@@ -24,7 +24,9 @@ class SubscriptionClientTest extends AbstractClientTestCase
 
         // Subscription tests
         self::assertEquals(SubscriptionStatus::DRAFT, $subscription->getStatus());
-        self::assertEquals(SubscriptionSchedule::MONTHLY, $subscription->getSchedule());
+
+        // Validate schedule is either 'monthly' or a valid monthly cron expression
+        $this->assertValidMonthlySchedule($subscription->getSchedule());
 
         // BillData tests
         self::assertEquals(3.0, $subscription->getBillData()->getItems()[0]->getPrice());
@@ -43,6 +45,10 @@ class SubscriptionClientTest extends AbstractClientTestCase
         $subscription = $this->client->getSubscription($subscription->getId());
 
         self::assertEquals(SubscriptionStatus::DRAFT, $subscription->getStatus());
+
+        // Validate schedule is either 'monthly' or a valid monthly cron expression
+        $this->assertValidMonthlySchedule($subscription->getSchedule());
+
         self::assertCount(2, $subscription->getBillData()->getItems());
         self::assertEquals(Currency::USD, $subscription->getBillData()->getCurrency());
         self::assertEquals('billData1234-ABCD', $subscription->getBillData()->getNumber());
@@ -79,7 +85,7 @@ class SubscriptionClientTest extends AbstractClientTestCase
         return new Subscription($this->getBillDataExample());
     }
 
-    private function getBillDataExample(): BillData
+    private function getBillDataExample(): Bill
     {
         $items = [];
         $item = new Item();
@@ -94,6 +100,54 @@ class SubscriptionClientTest extends AbstractClientTestCase
         $item->setDescription("Test Item 2");
         $items[] = $item;
 
-        return new BillData("billData1234-ABCD", Currency::USD, "john.doe@example.com", null, $items);
+        $bill = new Bill("billData1234-ABCD", Currency::USD, "john.doe@example.com", $items);
+
+        // When set to longer, we get BitPaySDK\Exceptions\BitPayApiException: Schedule with due date invalid for short months
+        $dueDate = (new \DateTime('now'))->modify('+28 days');
+        $bill->setDueDate($dueDate->format('Y-m-d\TH:i:s\Z'));
+
+        return $bill;
+    }
+
+    /**
+     * Helper method to validate if a schedule is a valid monthly schedule (either 'monthly' or a cron expression)
+     *
+     * @param string $schedule The schedule to validate
+     */
+    private function assertValidMonthlySchedule(string $schedule): void
+    {
+        if ($schedule === SubscriptionSchedule::MONTHLY) {
+            return; // Standard monthly string is valid
+        }
+
+        // Split the cron expression by spaces
+        $parts = explode(' ', $schedule);
+
+        // A proper cron expression should have 6 parts: second minute hour dayOfMonth month dayOfWeek
+        if (count($parts) !== 6) {
+            self::fail("Invalid cron expression format: " . $schedule);
+        }
+
+        [$second, $minute, $hour, $dayOfMonth, $month, $dayOfWeek] = $parts;
+
+        // Validate time parts are within range
+        self::assertGreaterThanOrEqual(0, (int)$second, "Second must be ≥ 0: " . $schedule);
+        self::assertLessThanOrEqual(59, (int)$second, "Second must be ≤ 59: " . $schedule);
+
+        self::assertGreaterThanOrEqual(0, (int)$minute, "Minute must be ≥ 0: " . $schedule);
+        self::assertLessThanOrEqual(59, (int)$minute, "Minute must be ≤ 59: " . $schedule);
+
+        self::assertGreaterThanOrEqual(0, (int)$hour, "Hour must be ≥ 0: " . $schedule);
+        self::assertLessThanOrEqual(23, (int)$hour, "Hour must be ≤ 23: " . $schedule);
+
+        // For a monthly schedule, day should be 1-28 (valid for all months)
+        self::assertGreaterThanOrEqual(1, (int)$dayOfMonth, "Day of month must be ≥ 1: " . $schedule);
+        self::assertLessThanOrEqual(28, (int)$dayOfMonth, "Day of month must be ≤ 28: " . $schedule);
+
+        // For monthly schedule, month should be *
+        self::assertEquals('*', $month, "Month must be * for monthly schedule: " . $schedule);
+
+        // For monthly schedule, day of week should be *
+        self::assertEquals('*', $dayOfWeek, "Day of week must be * for monthly schedule: " . $schedule);
     }
 }

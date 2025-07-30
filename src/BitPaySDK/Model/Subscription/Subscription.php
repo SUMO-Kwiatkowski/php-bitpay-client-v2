@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace BitPaySDK\Model\Subscription;
 
-use BitPaySDK\Env;
+use BitPaySDK\Model\Bill\Bill;
 
 /**
  * @package BitPaySDK\Model\Subscription
@@ -19,7 +19,7 @@ class Subscription
 {
     protected ?string $id = null;
     protected ?string $status = null;
-    protected BillData $billData;
+    protected Bill $billData;
     protected ?string $merchant = null;
     protected ?string $schedule = null;
     protected ?string $nextDelivery = null;
@@ -29,12 +29,12 @@ class Subscription
     /**
      * Constructor, create a minimal request Subscription object.
      *
-     * @param BillData|null $billData Object containing the recurring billing information.
+     * @param Bill|null $billData Object containing the recurring billing information.
      * @param string|null $schedule Schedule of recurring billing due dates
      */
-    public function __construct(?BillData $billData = null, ?string $schedule = SubscriptionSchedule::MONTHLY)
+    public function __construct(?Bill $billData = null, ?string $schedule = SubscriptionSchedule::MONTHLY)
     {
-        $this->billData = $billData ?: new BillData();
+        $this->billData = $billData ?: new Bill();
         $this->schedule = $schedule;
     }
 
@@ -118,10 +118,9 @@ class Subscription
      *
      * Object containing the recurring billing information
      *
-     * @return BillData
-     * @see BillData
+     * @return Bill
      */
-    public function getBillData(): BillData
+    public function getBillData(): Bill
     {
         return $this->billData;
     }
@@ -129,11 +128,10 @@ class Subscription
     /**
      * Set Subscription billData
      *
-     * @param BillData $billData Object containing the recurring billing information.
+     * @param Bill $billData Object containing the recurring billing information.
      * @return void
-     * @see BillData
      */
-    public function setBillData(BillData $billData): void
+    public function setBillData(Bill $billData): void
     {
         $this->billData = $billData;
     }
