@@ -319,14 +319,14 @@
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_amount">
         $amount
         <a href="classes/BitPaySDK-Model-Invoice-ItemizedDetails.html#property_amount" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/BitPaySDK/Model/Invoice/ItemizedDetails.php"><a href="files/src-bitpaysdk-model-invoice-itemizeddetails.html"><abbr title="src/BitPaySDK/Model/Invoice/ItemizedDetails.php">ItemizedDetails.php</abbr></a></abbr>
@@ -338,13 +338,15 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">float|null</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">float|null</span>
     <span class="phpdocumentor-signature__name">$amount</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
+    
+
     
 
     
@@ -355,14 +357,14 @@
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_description">
         $description
         <a href="classes/BitPaySDK-Model-Invoice-ItemizedDetails.html#property_description" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/BitPaySDK/Model/Invoice/ItemizedDetails.php"><a href="files/src-bitpaysdk-model-invoice-itemizeddetails.html"><abbr title="src/BitPaySDK/Model/Invoice/ItemizedDetails.php">ItemizedDetails.php</abbr></a></abbr>
@@ -374,13 +376,15 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$description</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
+    
+
     
 
     
@@ -391,14 +395,14 @@
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_isFee">
         $isFee
         <a href="classes/BitPaySDK-Model-Invoice-ItemizedDetails.html#property_isFee" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/BitPaySDK/Model/Invoice/ItemizedDetails.php"><a href="files/src-bitpaysdk-model-invoice-itemizeddetails.html"><abbr title="src/BitPaySDK/Model/Invoice/ItemizedDetails.php">ItemizedDetails.php</abbr></a></abbr>
@@ -410,13 +414,15 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">bool|null</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">bool|null</span>
     <span class="phpdocumentor-signature__name">$isFee</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
+    
+
     
 
     
@@ -821,6 +827,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

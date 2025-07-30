@@ -16,3 +16,8 @@ PrivateKey.key
 
 # Local development
 .lando.yml
+
+BitPay.config.json
+**/BitPay.config.json
+BitPay.config.yml
+**/BitPay.config.yml

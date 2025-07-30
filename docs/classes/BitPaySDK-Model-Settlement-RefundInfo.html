@@ -339,14 +339,14 @@
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_amounts">
         $amounts
         <a href="classes/BitPaySDK-Model-Settlement-RefundInfo.html#property_amounts" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/BitPaySDK/Model/Settlement/RefundInfo.php"><a href="files/src-bitpaysdk-model-settlement-refundinfo.html"><abbr title="src/BitPaySDK/Model/Settlement/RefundInfo.php">RefundInfo.php</abbr></a></abbr>
@@ -358,13 +358,15 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
     <span class="phpdocumentor-signature__name">$amounts</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
+    
+
     
 
     
@@ -375,14 +377,14 @@
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_currency">
         $currency
         <a href="classes/BitPaySDK-Model-Settlement-RefundInfo.html#property_currency" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/BitPaySDK/Model/Settlement/RefundInfo.php"><a href="files/src-bitpaysdk-model-settlement-refundinfo.html"><abbr title="src/BitPaySDK/Model/Settlement/RefundInfo.php">RefundInfo.php</abbr></a></abbr>
@@ -394,13 +396,15 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$currency</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
+    
+
     
 
     
@@ -411,14 +415,14 @@
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_refundRequestEid">
         $refundRequestEid
         <a href="classes/BitPaySDK-Model-Settlement-RefundInfo.html#property_refundRequestEid" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/BitPaySDK/Model/Settlement/RefundInfo.php"><a href="files/src-bitpaysdk-model-settlement-refundinfo.html"><abbr title="src/BitPaySDK/Model/Settlement/RefundInfo.php">RefundInfo.php</abbr></a></abbr>
@@ -430,13 +434,15 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$refundRequestEid</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
+    
+
     
 
     
@@ -447,14 +453,14 @@
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_supportRequest">
         $supportRequest
         <a href="classes/BitPaySDK-Model-Settlement-RefundInfo.html#property_supportRequest" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/BitPaySDK/Model/Settlement/RefundInfo.php"><a href="files/src-bitpaysdk-model-settlement-refundinfo.html"><abbr title="src/BitPaySDK/Model/Settlement/RefundInfo.php">RefundInfo.php</abbr></a></abbr>
@@ -466,13 +472,15 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$supportRequest</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
+    
+
     
 
     
@@ -961,6 +969,8 @@ Supported settlement currencies are listed on <a href="https://bitpay.com/docs/s
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
