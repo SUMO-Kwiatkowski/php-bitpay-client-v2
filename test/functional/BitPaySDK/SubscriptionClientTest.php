@@ -22,13 +22,10 @@ class SubscriptionClientTest extends AbstractClientTestCase
         $subscription = $this->getSubscriptionExample();
         $subscription = $this->client->createSubscription($subscription);
 
-        // Subscription tests
         self::assertEquals(SubscriptionStatus::DRAFT, $subscription->getStatus());
 
-        // Validate schedule is either 'monthly' or a valid monthly cron expression
         $this->assertValidMonthlySchedule($subscription->getSchedule());
 
-        // BillData tests
         self::assertEquals(3.0, $subscription->getBillData()->getItems()[0]->getPrice());
         self::assertEquals(2, $subscription->getBillData()->getItems()[0]->getQuantity());
         self::assertEquals(1, $subscription->getBillData()->getItems()[1]->getQuantity());
@@ -46,7 +43,6 @@ class SubscriptionClientTest extends AbstractClientTestCase
 
         self::assertEquals(SubscriptionStatus::DRAFT, $subscription->getStatus());
 
-        // Validate schedule is either 'monthly' or a valid monthly cron expression
         $this->assertValidMonthlySchedule($subscription->getSchedule());
 
         self::assertCount(2, $subscription->getBillData()->getItems());
@@ -120,7 +116,6 @@ class SubscriptionClientTest extends AbstractClientTestCase
             return; // Standard monthly string is valid
         }
 
-        // Split the cron expression by spaces
         $parts = explode(' ', $schedule);
 
         // A proper cron expression should have 6 parts: second minute hour dayOfMonth month dayOfWeek
@@ -140,14 +135,10 @@ class SubscriptionClientTest extends AbstractClientTestCase
         self::assertGreaterThanOrEqual(0, (int)$hour, "Hour must be ≥ 0: " . $schedule);
         self::assertLessThanOrEqual(23, (int)$hour, "Hour must be ≤ 23: " . $schedule);
 
-        // For a monthly schedule, day should be 1-28 (valid for all months)
         self::assertGreaterThanOrEqual(1, (int)$dayOfMonth, "Day of month must be ≥ 1: " . $schedule);
         self::assertLessThanOrEqual(28, (int)$dayOfMonth, "Day of month must be ≤ 28: " . $schedule);
 
-        // For monthly schedule, month should be *
         self::assertEquals('*', $month, "Month must be * for monthly schedule: " . $schedule);
-
-        // For monthly schedule, day of week should be *
         self::assertEquals('*', $dayOfWeek, "Day of week must be * for monthly schedule: " . $schedule);
     }
 }
