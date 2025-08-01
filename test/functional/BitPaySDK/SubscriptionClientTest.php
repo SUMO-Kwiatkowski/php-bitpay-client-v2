@@ -65,15 +65,45 @@ class SubscriptionClientTest extends AbstractClientTestCase
     {
         $subscription = $this->getSubscriptionExample();
         $subscription = $this->client->createSubscription($subscription);
+
+        // Store original values for comparison after update
+        $originalId = $subscription->getId();
+        $originalStatus = $subscription->getStatus();
+        $originalCurrency = $subscription->getBillData()->getCurrency();
+        $originalNumber = $subscription->getBillData()->getNumber();
+
         $subscription = $this->client->getSubscription($subscription->getId());
 
+        // Update multiple fields
         $bill = $subscription->getBillData();
         $bill->setEmail("jane.doe@example.com");
+        $bill->setName("Updated Company Name");
+        $bill->setCC(["jane.doe@example.com"]);
+        $bill->setPhone("555-0100");
+
+        // Update an item price
+        $items = $bill->getItems();
+        $items[0]->setPrice(5.0); // Change first item price from 3.0 to 5.0
+        $bill->setItems($items);
+
         $subscription->setBillData($bill);
 
         $subscription = $this->client->updateSubscription($subscription, $subscription->getId());
 
+        // Assert updated fields
         self::assertEquals("jane.doe@example.com", $subscription->getBillData()->getEmail());
+        self::assertEquals("Updated Company Name", $subscription->getBillData()->getName());
+        self::assertEquals(["jane.doe@example.com"], $subscription->getBillData()->getCc());
+        self::assertEquals("555-0100", $subscription->getBillData()->getPhone());
+        self::assertEquals(5.0, $subscription->getBillData()->getItems()[0]->getPrice());
+
+        // Assert that other important fields weren't changed
+        self::assertEquals($originalId, $subscription->getId(), "Subscription ID should not change after update");
+        self::assertEquals($originalStatus, $subscription->getStatus(), "Subscription status should not change");
+        self::assertEquals($originalCurrency, $subscription->getBillData()->getCurrency(), "Currency should not change");
+        self::assertEquals($originalNumber, $subscription->getBillData()->getNumber(), "Bill number should be preserved");
+        self::assertEquals(2, count($subscription->getBillData()->getItems()), "Item count should be preserved");
+        self::assertEquals(2, $subscription->getBillData()->getItems()[0]->getQuantity(), "Item quantity should be preserved");
     }
 
     private function getSubscriptionExample(): Subscription
