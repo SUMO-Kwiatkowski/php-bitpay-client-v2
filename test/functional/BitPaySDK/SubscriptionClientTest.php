@@ -98,8 +98,7 @@ class SubscriptionClientTest extends AbstractClientTestCase
 
         $bill = new Bill("billData1234-ABCD", Currency::USD, "john.doe@example.com", $items);
 
-        // When set to longer, we get BitPaySDK\Exceptions\BitPayApiException: Schedule with due date invalid for short months
-        $dueDate = (new \DateTime('now'))->modify('+28 days');
+        $dueDate = (new \DateTime('first day of next month'));
         $bill->setDueDate($dueDate->format('Y-m-d\TH:i:s\Z'));
 
         return $bill;
